@@ -12,7 +12,7 @@
 	
 	<h1>BreweryKeeper</h1>
 	<div class="brewery-list">
-		
+		<?php include("util/get-breweries.php"); ?>
 	</div>
 
 	<div class="success-text"></div>
