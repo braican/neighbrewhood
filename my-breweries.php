@@ -1,3 +1,5 @@
+<?php include('util/lock.php'); ?>
+
 <html>
 <head>
 	<title>BreweryKeeper</title>
@@ -11,9 +13,10 @@
 <div class="container">
 	
 	<h1>BreweryKeeper</h1>
-	<h2>your <a href="my-breweries.php">breweries</a>.</h2>
+	<h1>welcome <?php echo $login_session; ?></h1>
+	<h2>the <a href="brewery-list.php">list of breweries</a>.</h2>
 	<div class="brewery-list">
-		<?php include("util/get-breweries.php"); ?>
+		
 	</div>
 
 	<div class="success-text"></div>

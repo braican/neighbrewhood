@@ -10,7 +10,7 @@
 	
 	<div>
 		<!-- <h1>Add a brewery</h1> -->
-		<form action="insert-brewery.php">
+		<form id="insert-brewery" action="insert-brewery.php">
 			<input type="text" name="brewery_name" placeholder="name">
 			<input type="text" name="brewery_address" placeholder="address">
 			<input type="text" name="brewery_city" placeholder="city">
@@ -78,31 +78,5 @@
 	<div class="success-text"></div>
 
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script>
-	
-	$('form').on('submit', function(e){
-	    e.preventDefault();
-	    $.ajax({
-	        type     : "POST",
-	        cache    : false,
-	        url      : $(this).attr('action'),
-	        data	 : $(this).serialize(),
-	        success  : function(data) {
-	        	console.log(data);
-	            $(".success-text").empty().html(data).animate({opacity:1});
-	            setTimeout(function(){
-	            	$(".success-text").animate({opacity:0});
-	            }, 10000);
-	        },
-	        error	: function(){
-	        	console.log("BOO");
-	        }
-	    });
-
-		$('form input[type=text]').val('');
-
-	});
-
-</script>
 </body>
 </html>
