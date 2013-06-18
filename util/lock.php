@@ -1,26 +1,14 @@
-<?php 
-	include('db_util.php');
-	$db = dbconnect();
-	session_start();
+<?php
+// if you are using PHP 5.3 or PHP 5.4 you have to include the password_api_compatibility_library.php
+// (this library adds the PHP 5.5 password hashing functions to older versions of PHP)
+require_once("libraries/password_compatibility_library.php");
 
-	$user_check = $_SESSION['login_user'];
+// include the configs / constants for the database connection
+require_once("db_util.php");
 
-	echo $user_check;
+// load the login class
+require_once("classes/Login.php");
 
-	$session_sql = "SELECT username FROM users WHERE username='$user_check'";
-
-	echo $session_sql;
-	if(!$result = $db->query($session_sql)){
-		die('There was an error running the query [' . $db->error . ']');
-	}
-
-	if($result->num_rows == 1){
-		while($row = $result->fetch_assoc()){
-			$login_session = $row['username'];
-		}
-	}
-
-	if(!isset($login_session)){
-		header("Location: index.php");
-	}
-?>
+// create a login object. when this object is created, it will do all login/logout stuff automatically
+// so this single line handles the entire login process. in consequence, you can simply ...
+$login = new Login();
