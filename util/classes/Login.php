@@ -27,36 +27,34 @@ class Login {
     public function __construct() {
         
         // create/read session
-        session_start();                                        
+        session_start();
 
         // check the possible login actions:
         // 1. logout (happen when user clicks logout button)
-        // 2. login via session data (happens each time user opens a page on your php project AFTER he has sucessfully logged in via the login form)
-        // 3. login via post data, which means simply logging in via the login form. after the user has submit his login/password successfully, his
-        //    logged-in-status is written into his session data on the server. this is the typical behaviour of common login scripts.
+        // 2. login via session data (happens each time user opens a page
+        //    on your php project AFTER he has sucessfully logged in via
+        //    the loginform)
+        // 3. login via post data, which means simply logging in via the
+        //    login form. after the user has submit his login/password
+        //    successfully, his logged-in-status is written into his
+        //    session data on the server. this is the typical behavior of
+        //    common login scripts.
         
         // if user tried to log out
         if (isset($_GET["logout"])) {
-
             $this->doLogout();
-                    
         } 
         // if user has an active session on the server
         elseif (!empty($_SESSION['user_name']) && ($_SESSION['user_logged_in'] == 1)) {
-
-            $this->loginWithSessionData();                
-
-        // if user just submitted a login form
-        } elseif (isset($_POST["login"])) {
-
-                $this->loginWithPostData();
-                
+            $this->loginWithSessionData();                 
+        } elseif (isset($_POST["user_name"])) {  // if user just submitted a login form
+            $this->loginWithPostData();
         }        
     }    
     
 
     private function loginWithSessionData() {
-        
+        echo 'loginWithSessionData';
         // set logged in status to true, because we just checked for this:
         // !empty($_SESSION['user_name']) && ($_SESSION['user_logged_in'] == 1)
         // when we called this method (in the constructor)
@@ -64,9 +62,8 @@ class Login {
         
     }
     
-
     private function loginWithPostData() {
-        
+        echo 'loginWithPostData';
         // if POST data (from login form) contains non-empty user_name and non-empty user_password
         if (!empty($_POST['user_name']) && !empty($_POST['user_password'])) {
             
@@ -129,12 +126,10 @@ class Login {
      * perform the logout
      */
     public function doLogout() {
-            
-            $_SESSION = array();
-            session_destroy();
-            $this->user_is_logged_in = false;
-            $this->messages[] = "You have been logged out.";     
-            
+        $_SESSION = array();
+        session_destroy();
+        $this->user_is_logged_in = false;
+        $this->messages[] = "You have been logged out.";
     }
     
     /**
@@ -142,9 +137,7 @@ class Login {
      * @return boolean user's login status
      */
     public function isUserLoggedIn() {
-        
         return $this->user_is_logged_in;
-        
     }
 
 }
