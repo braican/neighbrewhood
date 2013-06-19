@@ -14,38 +14,25 @@
 	<h2>keep track of the breweries you've visited.</h2>
 	<div class="login">
 		<?php
-			include("util/db_util.php");
-			$db = dbconnect();
-			session_start();
-			if($_SERVER["REQUEST_METHOD"] == "POST"){
-				// username and password sent from form
-				$user = addslashes($_POST['username']);
-				$pwd = addslashes($_POST['password']);
-
-				$sql = "SELECT username FROM users WHERE username='$user' and password='$pwd'";
-				if(!$result = $db->query($sql)){
-					die('There was an error running the query [' . $db->error . ']');
-				}
-
-				$count = $result->num_rows;
-
-				if($count == 1){
-					$_SESSION['login_user'] = $user;
-					header('Location: my-breweries.php');
-				} else {
-					echo "not login";
-				}
-			}
-		?>
-
-		<form action="" method="post">
-		<label>UserName :</label>
-		<input type="text" name="username"/><br />
-		<label>Password :</label>
-		<input type="password" name="password"/><br/>
-		<input type="submit" value=" Submit "/><br />
-		</form>
-
+			require_once('util/lock.php');
+			
+			// the user is logged in
+			if ($login->isUserLoggedIn() == true) :
+		?>    
+			<h1>Thanks for logging in, <?php echo $_SESSION['user_name']; ?></h1>
+			<a href="index.php?logout">logout</a>
+		<?php // the user is not logged in ?>
+		<?php else : ?>
+			<!-- login form box -->
+			<form method="post" action="index.php" name="loginform">
+			    <label for="login_input_username">Username</label>
+			    <input id="login_input_username" class="login_input" type="text" name="user_name" required />
+			    <label for="login_input_password">Password</label>
+			    <input id="login_input_password" class="login_input" type="password" name="user_password" autocomplete="off" required />
+			    <input type="submit"  name="login" value="Log in" />
+			</form>
+		
+		<?php endif; ?>
 
 	</div>
 </div>

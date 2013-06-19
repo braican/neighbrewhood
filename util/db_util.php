@@ -1,17 +1,23 @@
-<?php 
+<?php
 
-function dbconnect () {
-	$db = new mysqli("localhost", "braican1_braican", "wonton820", "braican1_brewerykeeper");
-	if ($db->connect_errno) {
-	    echo "Failed to connect to MySQL: (" . $db->connect_errno . ") " . $db->connect_error;
-	}
-	return $db;
-}
+/**
+ * Configuration file for: Database Connection 
+ * This is the place where your database login constants are saved
+ * 
+ * For more info about constants please @see http://php.net/manual/en/function.define.php
+ * If you want to know why we use "define" instead of "const" @see http://stackoverflow.com/q/2447791/1114320
+ */
 
-function dbclose ($result, $db) {
-	if($result && is_object($result)) $result->free();
 
-	if($db) $db->close();
-}
+/** database host, usually it's "127.0.0.1" or "localhost", some servers also need port info, like "127.0.0.1:8080" */
+define("DB_HOST", "localhost");
 
-?>
+/** name of the database. please note: database and database table are not the same thing! */
+define("DB_NAME", "braican1_brewerykeeper");
+
+/** user for your database. the user needs to have rights for SELECT, UPDATE, DELETE and INSERT.
+/** By the way, it's bad style to use "root", but for development it will work */
+define("DB_USER", "braican1_braican");
+
+/** The password of the above user */
+define("DB_PASS", "wonton820");
