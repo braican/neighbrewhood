@@ -28,7 +28,7 @@ $(document).ready(function(){
 	});
 
 	// on loginform submit
-	$(document).on('submit', '#home-loginform', function(e){
+	$(document).on('submit', '#loginform', function(e){
 		e.preventDefault();
 		$.ajax({
 			type	: "POST",
@@ -36,9 +36,7 @@ $(document).ready(function(){
 			url		: 'util/login.php',
 			data	: $(this).serialize(),
 			success : function(data){
-				console.log("success");
-				console.log(data);
-				$('.login-container').load('util/login.php');
+				$('.login-container').html(data);
 			},
 			error 	: function(){
 				console.log("there was an errror");
