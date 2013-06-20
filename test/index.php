@@ -13,6 +13,10 @@ require_once("classes/Login.php");
 // so this single line handles the entire login process. in consequence, you can simply ...
 $login = new Login();
 
+echo '<pre>';
+print_r($login);
+echo '</pre>';
+
 // ... ask if we are logged in here:
 if ($login->isUserLoggedIn() == true) {    
     // the user is logged in. you can do whatever you want here.
