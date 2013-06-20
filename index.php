@@ -11,11 +11,12 @@
 
 <div class="container">
 	
+	<h1>BreweryKeeper</h1>
+	<h2>keep track of the breweries you've visited.</h2>
 
-<!-- 	<h1>BreweryKeeper</h1>
-	<h2>keep track of the breweries you've visited.</h2> -->
-
-
+<?php if($login->isUserLoggedIn() == true) : ?>
+	<h1>welcome <?php echo $_SESSION['user_name']; ?></h1>
+<?php else : ?>
 	<div class="login-container">
 		<div class="errors"></div>
 
@@ -28,6 +29,7 @@
 		    <input type="submit"  name="login" value="Log in" />
 		</form>
 	</div>
+<?php endif; ?>
 	
 </div>
 

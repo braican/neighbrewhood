@@ -1,19 +1,11 @@
-
-<?php
-	if(!$login){
-		echo 'no-login';
-		require_once('lock.php');
-	}
-?>
-<?php
-	if ($login->isUserLoggedIn() == true) :
-?>
+<?php require_once('lock.php'); ?>
+<?php if ($login->isUserLoggedIn() == true) : ?>
 		<h1>Thanks for logging in, <?php echo $_SESSION['user_name']; ?></h1>
 		<a href="?logout">logout</a>
 <?php
 	else :
 		// show negative messages
-		echo 'boo, no login;';
+		echo 'Wrong login credentials';
 		if ($login->errors) {
 		    foreach ($login->errors as $error) {
 		        echo $error;    
@@ -26,10 +18,7 @@
 		        echo $message;
 		    }
 		}
-
 ?>	
-
-	<pre><?php print_r($login); ?></pre>
 
 	<!-- login form box -->
 	<form method="post" action="util/login.php" id="home-loginform">
