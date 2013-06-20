@@ -27,12 +27,9 @@ class Registration {
      * you know, when you do "$login = new Login();"
      */    
     public function __construct() {
-        
-            if (isset($_POST["register"])) {
-                
-                $this->registerNewUser();
-                
-            }        
+        if (isset($_POST["user_password_new"])) {
+            $this->registerNewUser();
+        }
     }
 
     /**

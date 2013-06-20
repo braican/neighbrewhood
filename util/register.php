@@ -11,16 +11,13 @@ require_once("classes/Registration.php");
 // so this single line handles the entire registration process.
 $registration = new Registration();
 
-// showing the register view (with the registration form, and messages/errors)
-
-
 // show negative messages
 if ($registration->errors) {
     foreach ($registration->errors as $error) {
         echo $error;    
     }
 }
-
+    
 // show positive messages
 if ($registration->messages) {
     foreach ($registration->messages as $message) {
@@ -28,9 +25,8 @@ if ($registration->messages) {
     }
 }
 
-?>   
-
+?>
 
 
 <!-- backlink -->
-<a href="../index.php">Back to Login Page</a>
+<a href="index.php">Back to Login Page</a>
