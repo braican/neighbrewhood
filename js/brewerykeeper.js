@@ -44,6 +44,23 @@ $(document).ready(function(){
 			}
 		});
 	});
+
+	$('#registerform').on('submit', function(e){
+		e.preventDefault();
+		$.ajax({
+			type	: "POST",
+			cache	: false,
+			url		: 'util/register.php',
+			data	: $(this).serialize(),
+			success : function(data){
+				console.log(data);
+				//$('.login-container').html(data);
+			},
+			error 	: function(){
+				console.log("there was an errror");
+			}
+		});
+	});
 });
 
 
