@@ -1,5 +1,6 @@
 <?php 
-	require_once("../util/db_util.php");
+	require_once("db_util.php");
+
 	$brewery_name = $_POST["brewery_name"];
 	$brewery_address = $_POST["brewery_address"];
 	$brewery_city = $_POST["brewery_city"];
@@ -11,7 +12,10 @@
 	if ($brewery_name!="" && $brewery_address != "" &&
 		$brewery_state != "" && $brewery_zip != "") {
 		//connect to database
-		$db = dbconnect();
+		$db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+		if($db->connect_errno){
+			die("There was a problem connecting to the database");
+		}
 
 		// add the new project to the project database
 		$sql =	"INSERT INTO `brewery_list`(`name`, `address`, `city`, `state`, `zip`, `brewers_website`, `ba_link`) " .
@@ -24,14 +28,14 @@
 			  		$brewery_website . "', '" .
 			  		$ba_lnk . "')";
 
-		echo $sql;		
+		echo $sql;
 
 		if(!$result = $db->query($sql)){
 			die('There was an error running the query [' . $db->error . ']');
 		}
 		echo "<p>$brewery_name added.</p>";
 
-		dbclose($result, $db);
+		mysqli_close($db);
 	} else {
 		echo "no dice";
 	}

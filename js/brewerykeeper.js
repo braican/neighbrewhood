@@ -8,6 +8,7 @@ $(document).ready(function(){
 	// brewery.php
 	$('#insert-brewery').on('submit', function(e){
 	    e.preventDefault();
+	    console.log("gogo");
 	    $.ajax({
 	        type     : "POST",
 	        cache    : false,

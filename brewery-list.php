@@ -3,15 +3,15 @@
 	<title>BreweryKeeper</title>
 
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="css/style.css">
 	
 </head>
 <body>
 
 <div class="container">
 	
-	<h1>BreweryKeeper</h1>
-	<h2>your <a href="my-breweries.php">breweries</a>.</h2>
+<!-- 	<h1>BreweryKeeper</h1>
+	<h2>your <a href="my-breweries.php">breweries</a>.</h2> -->
 	<div class="brewery-list">
 		<?php include("util/get-breweries.php"); ?>
 	</div>
