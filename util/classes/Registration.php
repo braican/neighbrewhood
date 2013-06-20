@@ -124,6 +124,12 @@ class Registration {
                         $this->messages[] = "Your account has been created successfully. You can now log in.";
                         $this->registration_successful = true;
 
+                        $sql_new_user = "CREATE TABLE " . $this->user_name . " (brewery_id BIGINT(20))";
+                        $insert_new_user_table = $this->db_connection->query($sql_new_user);
+                        if(! $insert_new_user_table){
+                            $this->errors[] = "Sorry, failed to add user";
+                        }
+
                     } else {
 
                         $this->errors[] = "Sorry, your registration failed. Please go back and try again.";

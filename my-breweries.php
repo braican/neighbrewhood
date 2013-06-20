@@ -6,9 +6,11 @@
 
 <?php include('includes/nav.html'); ?>
 
+<?php $u = $_SESSION['user_name']; ?>
+
 	<?php if ($login->isUserLoggedIn() == true) : ?>
 		
-		<h1>welcome <?php echo $_SESSION['user_name']; ?></h1>
+		<h1>welcome <?php echo $u; ?></h1>
 		<p><a href="?logout">Logout</a></p>
 		<h2>the <a href="brewery-list.php">list of breweries</a>.</h2>
 		<div class="brewery-list">
@@ -30,6 +32,17 @@
 			</form>
 		</div>
 		
+	<?php endif; ?>
+
+	<?php if ($login->isUserLoggedIn() == true) : ?>
+
+		<h1>Been to a new place?</h1>
+		<!-- add brewery -->
+		<form method="post" action="util/user-add-brewery.php" id="user-add-brewery">
+		    <label for="add_brewery">Name</label>
+		    <input id="add_brewery" type="text" name="add_brewery" required />
+		    <input type="submit"  name="login" value="Add" />
+		</form>
 	<?php endif; ?>
 
 <?php include('includes/footer.html'); ?>
