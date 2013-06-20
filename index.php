@@ -1,15 +1,6 @@
-<?php require_once('util/lock.php') ?>
-<html>
-<head>
-	<title>BreweryKeeper</title>
+<?php require_once('util/lock.php'); ?>
 
-	<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="css/style.css">
-	
-</head>
-<body>
-
-<div class="container">
+<?php include('includes/header.html'); ?>
 	
 	<h1>BreweryKeeper</h1>
 	<h2>keep track of the breweries you've visited.</h2>
@@ -36,10 +27,5 @@
 		</form>
 	</div>
 <?php endif; ?>
-	
-</div>
 
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="js/brewerykeeper.js"></script>
-</body>
-</html>
+<?php include('includes/footer.html'); ?>
