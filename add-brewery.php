@@ -1,16 +1,17 @@
+<?php include_once('util/lock.php'); ?>
 <!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>Add brewery utility</title>
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="../style.css">
+	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 	
 	<div>
 		<!-- <h1>Add a brewery</h1> -->
-		<form id="insert-brewery" action="insert-brewery.php">
+		<form id="insert-brewery" action="util/insert-brewery.php">
 			<input type="text" name="brewery_name" placeholder="name">
 			<input type="text" name="brewery_address" placeholder="address">
 			<input type="text" name="brewery_city" placeholder="city">
@@ -78,5 +79,6 @@
 	<div class="success-text"></div>
 
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="js/brewerykeeper.js"></script>
 </body>
 </html>
