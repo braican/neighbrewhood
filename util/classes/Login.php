@@ -43,16 +43,19 @@ class Login {
         // if user tried to log out
         if (isset($_GET["logout"])) {
             $this->doLogout();
-        } elseif (isset($_POST["user_name"])) {  // if user just submitted a login form
-            //console.log("post was submitted");
-            $this->loginWithPostData();
-        } elseif (!empty($_SESSION['user_name']) && ($_SESSION['user_logged_in'] == 1)) {
+        } 
+        // if user has an active session on the server
+        elseif (!empty($_SESSION['user_name']) && ($_SESSION['user_logged_in'] == 1)) {
             $this->loginWithSessionData();                 
-        }      
+        } elseif (isset($_POST["user_name"])) {  // if user just submitted a login form
+            $this->loginWithPostData();
+        }        
     }    
     
 
     private function loginWithSessionData() {
+
+        echo 'loginWithSessionData';
         // set logged in status to true, because we just checked for this:
         // !empty($_SESSION['user_name']) && ($_SESSION['user_logged_in'] == 1)
         // when we called this method (in the constructor)
@@ -61,6 +64,8 @@ class Login {
     }
     
     private function loginWithPostData() {
+
+        echo 'loginWithPostData';
         // if POST data (from login form) contains non-empty user_name and non-empty user_password
         if (!empty($_POST['user_name']) && !empty($_POST['user_password'])) {
             
