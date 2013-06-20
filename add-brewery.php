@@ -1,14 +1,7 @@
-<?php include_once('util/lock.php'); ?>
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Add brewery utility</title>
-	<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-	
+<?php require_once('util/lock.php'); ?>
+
+<?php include('includes/header.html'); ?>
+
 	<div>
 		<!-- <h1>Add a brewery</h1> -->
 		<form id="insert-brewery" action="util/insert-brewery.php">
@@ -78,7 +71,4 @@
 
 	<div class="success-text"></div>
 
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="js/brewerykeeper.js"></script>
-</body>
-</html>
+<?php include('includes/footer.html'); ?>

@@ -1,17 +1,7 @@
-<?php include('util/lock.php'); ?>
+<?php require_once('util/lock.php'); ?>
 
-<html>
-<head>
-	<title>BreweryKeeper</title>
+<?php include('includes/header.html'); ?>
 
-	<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="css/style.css">
-	
-</head>
-<body>
-
-<div class="container">
-	
 	<h1>BreweryKeeper</h1>
 
 	<nav>
@@ -64,9 +54,5 @@
 	
 		
 	<?php endif; ?>
-	
-</div>
 
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-</body>
-</html>
+<?php include('includes/footer.html'); ?>
