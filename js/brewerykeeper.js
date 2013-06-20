@@ -53,8 +53,7 @@ $(document).ready(function(){
 			url		: 'util/register.php',
 			data	: $(this).serialize(),
 			success : function(data){
-				console.log(data);
-				//$('.login-container').html(data);
+				$('.login-container').html(data);
 			},
 			error 	: function(){
 				console.log("there was an errror");

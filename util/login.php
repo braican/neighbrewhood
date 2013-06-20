@@ -1,5 +1,3 @@
-<?php //require_once('lock.php'); ?>
-
 <?php 
 require_once("libraries/password_compatibility_library.php");
 

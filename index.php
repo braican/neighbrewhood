@@ -26,7 +26,7 @@
 			<!-- register -->
 			<h2>or register</h2>
 			<!-- register form -->
-			<form method="post" action="util/register.php" name="registerform" id="registerform">   
+			<form method="post" name="registerform" id="registerform">   
 			    
 			    <!-- the user name input field uses a HTML5 pattern check -->
 			    <label for="login_input_username">Username (only letters and numbers, 2 to 64 characters)</label>
