@@ -4,6 +4,13 @@
 //
 $(document).ready(function(){
 
+	// -------------------------------
+	// autocomplete
+	//
+	$('#add_brewery').autocomplete({
+		source: "../util/brewery-autocomplete.php"
+	});
+
 	// insert brewery form
 	// brewery.php
 	$('#insert-brewery').on('submit', function(e){
@@ -54,6 +61,23 @@ $(document).ready(function(){
 			data	: $(this).serialize(),
 			success : function(data){
 				$('.login-container').html(data);
+			},
+			error 	: function(){
+				console.log("there was an errror");
+			}
+		});
+	});
+
+	$('#add-user-brewery').on('submit', function(e){
+		e.preventDefault();
+		$.ajax({
+			type	: "POST",
+			cache	: false,
+			url		: 'util/add-user-brewery.php',
+			data	: $(this).serialize(),
+			success : function(data){
+				$('.errors').html(data);
+				$('.user-breweries').load('util/get-user-breweries.php');
 			},
 			error 	: function(){
 				console.log("there was an errror");

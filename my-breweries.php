@@ -35,12 +35,19 @@
 	<?php endif; ?>
 
 	<?php if ($login->isUserLoggedIn() == true) : ?>
+	
+		<div class="errors"></div>
+		<div class="user-breweries">
+
+			<?php require_once('util/get-user-breweries.php'); ?>
+		</div>
 
 		<h1>Been to a new place?</h1>
 		<!-- add brewery -->
-		<form method="post" action="util/user-add-brewery.php" id="user-add-brewery">
+		<form method="post" id="add-user-brewery">
 		    <label for="add_brewery">Name</label>
 		    <input id="add_brewery" type="text" name="add_brewery" required />
+		    <input type="hidden" name="user" value="<?php echo $u; ?>">
 		    <input type="submit"  name="login" value="Add" />
 		</form>
 	<?php endif; ?>
