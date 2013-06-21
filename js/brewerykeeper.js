@@ -8,7 +8,8 @@ $(document).ready(function(){
 	// autocomplete
 	//
 	$('#add_brewery').autocomplete({
-		source: "../util/brewery-autocomplete.php"
+		source: "util/brewery-autocomplete.php",
+		dataType: "json"
 	});
 
 	// insert brewery form

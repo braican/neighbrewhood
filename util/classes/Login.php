@@ -54,8 +54,6 @@ class Login {
     
 
     private function loginWithSessionData() {
-
-        echo 'loginWithSessionData';
         // set logged in status to true, because we just checked for this:
         // !empty($_SESSION['user_name']) && ($_SESSION['user_logged_in'] == 1)
         // when we called this method (in the constructor)
@@ -64,8 +62,6 @@ class Login {
     }
     
     private function loginWithPostData() {
-
-        echo 'loginWithPostData';
         // if POST data (from login form) contains non-empty user_name and non-empty user_password
         if (!empty($_POST['user_name']) && !empty($_POST['user_password'])) {
             
