@@ -7,9 +7,7 @@ require_once("db_util.php");
 // load the login class
 require_once("classes/Login.php");
 
-// create a login object. when this object is created, it will do all login/logout stuff automatically
-// so this single line handles the entire login process. in consequence, you can simply ...
-
+// create a login object
 $login_submit = new Login();
 ?>
 
@@ -20,13 +18,11 @@ $login_submit = new Login();
 <?php
 	else :
 		// show negative messages
-		//echo 'Wrong login credentials';	
 		if ($login_submit->errors) {
 		    foreach ($login_submit->errors as $error) {
 		        echo $error;    
 		    }
 		}
-
 		// show positive messages
 		if ($login_submit->messages) {
 		    foreach ($login_submit->messages as $message) {

@@ -2,7 +2,7 @@
 	require_once("db_util.php");
 
 	$brewery_name = $_POST["add_brewery"];
-
+	$user = $_POST['user'];
 
 	if ($brewery_name!="") {
 		//connect to database
@@ -12,22 +12,7 @@
 		}
 
 		// search brewery database for the brewery
-		//SELECT `brewery_id` FROM `brewery_list` WHERE `name` = 'harpoon brewery'
 		$sql = "SELECT `brewery_id` from `brewery_list` WHERE `name` = '" . $brewery_name . "'";
-
-		// add the new project to the project database
-		// $sql =	"INSERT INTO `brewery_list`(`name`, `address`, `city`, `state`, `zip`, `brewers_website`, `ba_link`) " .
-		// 	  	"VALUES ('" .
-		// 	  		$brewery_name . "', '" .
-		// 	  		$brewery_address . "', '" .
-		// 	  		$brewery_city . "', '" .
-		// 	  		$brewery_state . "', '" .
-		// 	  		$brewery_zip . "', '" .
-		// 	  		$brewery_website . "', '" .
-		// 	  		$ba_lnk . "')";
-
-
-		echo $sql;
 
 		// there was an error with the query
 		if(!$result = $db->query($sql)){
@@ -37,13 +22,28 @@
 		if($result->num_rows == 1) {
 			$row = $result->fetch_assoc();
 			$id = $row['brewery_id'];
-			$user = $_SESSION['user_name'];
-			$brewery_sql = "INSERT INTO `" . $user . "` VALUES (" . $id . ")";
+
+			// check to see if the brewery already has been entered
+			$count_sql = "SELECT * FROM " . $user . " WHERE brewery_id = " . $id;
+			// there was an error with the query
+			if(!$count_query = $db->query($count_sql)){
+				die('There was an error running the query [' . $db->error . ']');
+			}
+
+			if($count_query->num_rows != 0){
+				die('You already added this brewery');
+			}
+
+
+			$brewery_sql = "INSERT INTO " . $user . " VALUES (" . $id . ")";
+
+			// there was an error with the query
+			if(!$brewery_result = $db->query($brewery_sql)){
+				die('There was an error running the query [' . $db->error . ']');
+			}
+		} else{
+			echo 'Brewery not found. try entering it';
 		}
-		// while($row = $result->fetch_assoc()) {
-
-		// }
-
 		mysqli_close($db);
 	} else {
 		echo "Gotta put in a brewery";
