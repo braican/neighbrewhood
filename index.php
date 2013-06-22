@@ -1,11 +1,5 @@
-<?php require_once('util/lock.php'); ?>
 
 <?php include('includes/header.html'); ?>
-<!-- 	
-	<h1>BreweryKeeper</h1>
-	<h2>keep track of the breweries you've visited.</h2> -->
-
-<?php include('includes/nav.html'); ?>
 	
 	<div class="login-container">
 

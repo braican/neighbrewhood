@@ -1,8 +1,87 @@
 /* ==========================================================================
    brewerykeeper - braican
    ========================================================================== */
+
+/**
+ * --colors
+ * 
+ * purple 		- #37005b
+ * dark purple 	- #1e0042
+ * orange 		- #ff7c00
+ * text 		- #444
+ */
+
+
+/**
+ * html5doctor.com Reset Stylesheet v1.6.1 (http://html5doctor.com/html-5-reset-stylesheet/)
+ * Richard Clark (http://richclarkdesign.com) 
+ * http://cssreset.com
+ */
+html,body,div,span,object,iframe,
+h1,h2,h3,h4,h5,h6,p,blockquote,
+pre,abbr,address,cite,code,del,
+dfn,em,img,ins,kbd,q,samp,small,
+strong,sub,sup,var,b,i,dl,dt,dd,
+ol,ul,li,fieldset,form,label,legend,
+table,caption,tbody,tfoot,thead,tr,
+th, td,article, aside, canvas, details,
+figcaption, figure,footer, header,
+hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+	margin:0;
+	padding:0;
+	border:0;
+	outline:0;
+	font-size:100%;
+	vertical-align:baseline;
+	background:transparent;
+}
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section {display:block;}
+
+blockquote, q {quotes:none;}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content:'';
+	content:none;
+}
+
+ins {
+	background-color:#ff9;
+	color:#000;
+	text-decoration:none;
+}
+mark {
+	background-color:#ff9;
+color:#000;
+font-style:italic;
+font-weight:bold;}
+del {text-decoration: line-through;}
+abbr[title], dfn[title] {
+	border-bottom:1px dotted;
+	cursor:help;
+}
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+hr {
+	display:block;
+	height:1px;
+	border:0;
+	border-top:1px solid #cccccc;
+	margin:1em 0;
+	padding:0;
+}
+input, select {vertical-align:middle;}
+
 body{
+	line-height: 1;
 	font-family: 'Lato', sans-serif;
+	color:#444;
+	background: url(../assets/bg.png);
+	padding: 0;
+	margin: 0;
 }
 
 *{
@@ -16,11 +95,36 @@ body{
    --general
    ================================================ */
 
+img{max-width: 100%;}
+
+/* ======================
+   --typography 
+   ====================== */
+a {
+	margin:0;
+	padding:0;
+	font-size:100%;
+	vertical-align:baseline;
+	background:transparent;
+}
+
+h1{
+	font-size: 3em;
+}
+h2{
+	font-size: 2em;
+}
+
 /* ======================
    --form elements 
    ====================== */
 
-input[type=text]{
+label{
+	margin-bottom: 8px;
+	display: block;
+}
+input[type=text],
+input[type=password]{
 	padding: 8px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -28,18 +132,18 @@ input[type=text]{
 	border: 1px solid #ccc;
 	background-color: #efefef;
 	font-size: 14px;
-	margin: 0;
-	height: 36px;
+	margin: 8px 0;
+	display: block;
 }
 input[type=submit]{
-	background-color: #aaa;
+	background-color: #37005b;
 	border: 0;
-	height: 36px;
-	margin: 0;
+	padding: 8px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
-	font-size: 16px;
+	font-size: 14px;
+	font-weight: bold;
 	color:#fff;
 	cursor: pointer;
 
@@ -47,9 +151,10 @@ input[type=submit]{
 	-o-transition: all .2s linear;
 	-moz-transition: all .2s linear;
 	transition: all .2s linear;
+	text-transform: uppercase;
 }
 input[type=submit]:hover{
-	background-color: #919191;
+	background-color: #1e0042;
 
 	-webkit-transition: all .2s linear;
 	-o-transition: all .2s linear;
@@ -57,10 +162,133 @@ input[type=submit]:hover{
 	transition: all .2s linear;
 }
 
+/* ======================
+   --header
+   ====================== */
+#banner{
+	width: 100%;
+	position: relative;
+}
+.title-container{
+	background: #37005b;
+	height: 60px;
+	-webkit-box-shadow: 0 2px 5px #222;
+	-moz-box-shadow: 0 2px 5px #222;
+	box-shadow: 0 2px 5px #222;
+	position: relative;
+	z-index: 5;
+}
+.site-title{
+	text-align: center;
+	color: #fff;
+	text-shadow: 2px 2px 5px #222;
+	position: relative;
+	top: 24px;
+	font-family: 'Lobster', sans-serif;
+}
+.banner-container{
+	width: 100%;
+	height: 400px;
+	background-color: rgba(0,0,0,.4);
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-image: url(../assets/header-img/3.jpg);
+	background-position: center center;
+	position: relative;
+}
+.banner-container h2{
+	color: #fff;
+	position: absolute;
+	left: 10%;
+	bottom: 0;
+	padding:10px 10px 20px 10px;
+	background: rgba(0,0,0,.4);
+	color: #fff;
+	text-shadow: 2px 2px 2px #444;
+	font-weight: bold;
+	max-width: 50%;
+	font-size: 3em;
+}
+
+/* login navigation */
+.login-prompt{
+	background: #ff7c00;
+	position: absolute;
+	padding: 10px;
+	right: 20px;
+	color: #fff;
+	font-weight: bold;
+	-webkit-box-shadow: 0 2px 5px #222;
+	-moz-box-shadow: 0 2px 5px #222;
+	box-shadow: 0 2px 5px #222;
+	cursor: pointer;
+	z-index: 4;
+	top: 0;
+}
+
+.account-nav{
+	position: relative;
+}
+.account-links{
+	background: #ff7c00;
+	position: absolute;
+	padding: 10px;
+	right: 20px;
+	top: 0;
+	color: #fff;
+	font-weight: bold;
+	-webkit-box-shadow: 0 2px 5px #222;
+	-moz-box-shadow: 0 2px 5px #222;
+	box-shadow: 0 2px 5px #222;
+	z-index: 4;
+	display: none;
+}
+.account-links a{
+	color: #fff;
+	display: block;
+	padding: 8px 0;
+}
+
+.register-modal{
+	float: right;
+}
+
+/* ======================
+   --navigation 
+   ====================== */
+nav{
+	width: 100%;
+	background: #fff;
+}
+nav ul {
+	list-style:none;
+	width: 60%;
+	margin: 0 auto;
+}
+nav ul li{
+	display: inline-block;
+	width: 49%;
+	text-align: center;
+}
+nav ul li a{
+	padding: 20px;
+	color: #444;
+	text-decoration: none;
+	display: inline-block;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+nav ul li a:hover{
+	background: #eee;
+}
 
 /* ================================================
    --specific pages
    ================================================ */
+
+/* ======================
+   --homepage 
+   ====================== */
 
 
 /* ======================

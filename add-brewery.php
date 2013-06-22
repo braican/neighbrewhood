@@ -1,8 +1,5 @@
-<?php require_once('util/lock.php'); ?>
 
 <?php include('includes/header.html'); ?>
-
-<?php include('includes/nav.html'); ?>
 	<div>
 		<!-- <h1>Add a brewery</h1> -->
 		<form id="insert-brewery" action="util/insert-brewery.php">

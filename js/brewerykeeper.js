@@ -12,6 +12,46 @@ $(document).ready(function(){
 		dataType: "json"
 	});
 
+	// -------------------------------
+	// login ui
+	//
+
+	// at the start, get the height of the acount-links
+	//  so we can hide it the appropriate amount
+	var accountLinksHeight = $('.account-links').outerHeight();
+	
+	$('.account-links').css({
+		'top' : '-' + accountLinksHeight + 'px'
+	});
+	$(document).on('click', '.login-prompt', function(e){
+		e.preventDefault();
+		$(this).animate({
+			'top' : '-' + $(this).outerHeight() + 'px'
+		}, 200, function(){
+			$('.account-links').css({
+				'display' : 'block'
+			}).animate({
+				'top' : '0px'
+			});
+		});
+	});
+
+	// close the account links dropdown
+	$(document).on('click', '.close-account-links', function(e){
+		e.preventDefault();
+		$('.account-links').animate({
+			'top' : '-' + accountLinksHeight + 'px'
+		}, 400, function(){
+			$('.login-prompt').animate({
+				'top' : '0px'
+			});
+		});
+	});
+
+	// -------------------------------
+	// FORMS
+	//
+
 	// insert brewery form
 	// brewery.php
 	$('#insert-brewery').on('submit', function(e){
@@ -39,6 +79,7 @@ $(document).ready(function(){
 	// on loginform submit
 	$(document).on('submit', '#loginform', function(e){
 		e.preventDefault();
+
 		$.ajax({
 			type	: "POST",
 			cache	: false,
@@ -46,6 +87,15 @@ $(document).ready(function(){
 			data	: $(this).serialize(),
 			success : function(data){
 				$('.login-container').html(data);
+				$('.account-links').animate({
+					'top' : '-' + accountLinksHeight + 'px'
+				}, 400, function(){
+					$('.account-nav').load('includes/login-navigation.php?logged', function(){
+						$('.login-prompt').animate({
+							'top' : '0px'
+						});
+					});
+				});
 			},
 			error 	: function(){
 				console.log("there was an errror");
