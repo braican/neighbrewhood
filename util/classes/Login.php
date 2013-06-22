@@ -41,11 +41,11 @@ class Login {
         //    common login scripts.
         
         // if user tried to log out
-        if (isset($_GET["logout"])) {
-            $this->doLogout();
-        } 
+        // if (isset($_GET["logout"])) {
+        //     $this->doLogout();
+        // } 
         // if user has an active session on the server
-        elseif (!empty($_SESSION['user_name']) && ($_SESSION['user_logged_in'] == 1)) {
+        if (!empty($_SESSION['user_name']) && ($_SESSION['user_logged_in'] == 1)) {
             $this->loginWithSessionData();                 
         } elseif (isset($_POST["user_name"])) {  // if user just submitted a login form
             $this->loginWithPostData();
@@ -124,6 +124,7 @@ class Login {
      * perform the logout
      */
     public function doLogout() {
+        echo 'dologout';
         $_SESSION = array();
         session_destroy();
         $this->user_is_logged_in = false;

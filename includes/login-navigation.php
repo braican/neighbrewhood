@@ -16,7 +16,7 @@
 	<?php if($loggedin == true) : ?>
 		<div class="login-prompt">hey <?php echo $_SESSION['user_name']; ?></div>
 		<div class="account-links">
-			<a href="?logout" class="logout-btn">Logout</a>
+			<a href="#" class="logout-btn">Logout</a>
 			<a href="add-brewery.php">Add a Brewery</a>
 			<a href="#" class="close-account-links">Close</a>
 		</div>
