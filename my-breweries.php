@@ -1,5 +1,5 @@
 
-<?php include('includes/header.html'); ?>
+<?php include('includes/header.php'); ?>
 
 	<?php if ($login->isUserLoggedIn() == true) : ?>
 		
@@ -45,4 +45,4 @@
 		</form>
 	<?php endif; ?>
 
-<?php include('includes/footer.html'); ?>
+<?php include('includes/footer.php'); ?>

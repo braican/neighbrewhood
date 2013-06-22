@@ -1,5 +1,5 @@
 
-<?php include('includes/header.html'); ?>
+<?php include('includes/header.php'); ?>
 	<div>
 		<!-- <h1>Add a brewery</h1> -->
 		<form id="insert-brewery" action="util/insert-brewery.php">
@@ -69,4 +69,4 @@
 
 	<div class="success-text"></div>
 
-<?php include('includes/footer.html'); ?>
+<?php include('includes/footer.php'); ?>

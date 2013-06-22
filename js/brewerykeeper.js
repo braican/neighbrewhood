@@ -13,7 +13,7 @@ $(document).ready(function(){
 	});
 
 	// -------------------------------
-	// login ui
+	// login ux
 	//
 
 	// at the start, get the height of the acount-links
@@ -48,9 +48,43 @@ $(document).ready(function(){
 		});
 	});
 
+	// start the login prompt above so it can slide down 
+	//  on page load
 	$('.login-prompt').animate({
 		'top' : '0px'
 	});
+
+	// register 
+	$('.register-slideout').on('click', function(e){
+		e.preventDefault();
+		var offset = $('#registration-form').offset().top;
+		console.log(offset);
+		$('html, body').animate({scrollTop : offset}, 400, function(){
+			$('#registration-form .drawer').addClass('opendrawer').slideDown(400, function(){
+				$('html, body').animate({scrollTop : offset});
+			});
+		});
+	});
+
+
+	// -------------------------------
+	// slidedown interaction
+	//
+	$('.slidedown-trigger').on('click', function(e){
+		e.preventDefault();
+		var $t = $(this).siblings('.drawer');
+		if(!$(this).siblings('.drawer').hasClass('opendrawer')){
+			if($('.slidedown .opendrawer').length > 0){
+				$('.slidedown .opendrawer').slideUp(400, function(){
+					$('.slidedown .drawer').removeClass('opendrawer');
+					$t.slideDown().addClass('opendrawer');
+				});	
+			} else {
+				$t.slideDown().addClass('opendrawer');
+			}	
+		}
+	});
+
 
 	// -------------------------------
 	// FORMS
@@ -91,7 +125,9 @@ $(document).ready(function(){
 			success : function(data){
 				console.log(data);
 				if(data == 1){
-					$('.login-container').html(data);
+					$('.login-container').hide().load('includes/loggedin-index.php', function(){
+						$(this).fadeIn();
+					});
 					$('.account-links').animate({
 						'top' : '-' + accountLinksHeight + 'px'
 					}, 400, function(){
