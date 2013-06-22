@@ -28,7 +28,7 @@
 			    <input id="login_input_username" class="login_input" type="text" name="user_name" required placeholder="username"/>
 			    <input id="login_input_password" class="login_input" type="password" name="user_password" autocomplete="off" required placeholder="password" />
 			    <input type="submit"  name="login" value="Log in" />
-			    <span class="register-modal"><a href="#">or register</a></span>
+			    <span class="register-slideout"><a href="#">or register</a></span>
 			</form>
 			<div class="error-messages"></div>
 		</div>

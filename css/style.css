@@ -8,6 +8,7 @@
  * purple 		- #37005b
  * dark purple 	- #1e0042
  * orange 		- #ff7c00
+ * dark orange  - #e66300
  * text 		- #444
  */
 
@@ -106,13 +107,23 @@ a {
 	font-size:100%;
 	vertical-align:baseline;
 	background:transparent;
+	color: #444;
 }
 
 h1{
 	font-size: 3em;
+	padding-bottom: 20px;
 }
 h2{
 	font-size: 2em;
+	padding-bottom: 10px;
+}
+h3{
+	font-size: 1.4em;
+	padding-bottom: 8px;
+}
+p{
+	line-height: 1.4em;
 }
 
 /* ======================
@@ -122,9 +133,11 @@ h2{
 label{
 	margin-bottom: 8px;
 	display: block;
+	font-size: .8em;
 }
 input[type=text],
-input[type=password]{
+input[type=password],
+input[type=email]{
 	padding: 8px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -173,6 +186,42 @@ input[type=submit]:hover{
 }
 
 /* ======================
+   --slidedowns 
+   ====================== */
+.slidedown{
+	margin-bottom: 50px;
+}
+.slidedown .drawer{
+	display: none;
+}
+.slidedown form{
+	margin-top: 20px;
+}
+.slidedown-trigger{
+	cursor: pointer;
+	text-align: center;
+	background: #ff7c00;
+	color: #fff;
+	padding: 4px 0;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	margin-top: 10px;
+	text-transform: uppercase;
+	-webkit-transition: all .2s linear;
+	-o-transition: all .2s linear;
+	-moz-transition: all .2s linear;
+	transition: all .2s linear;
+}
+.slidedown-trigger:hover{
+	background: #E66300;
+	-webkit-transition: all .2s linear;
+	-o-transition: all .2s linear;
+	-moz-transition: all .2s linear;
+	transition: all .2s linear;
+}
+
+/* ======================
    --header
    ====================== */
 #banner{
@@ -195,6 +244,8 @@ input[type=submit]:hover{
 	position: relative;
 	top: 24px;
 	font-family: 'Lobster', sans-serif;
+	width: 360px;
+	margin: 0 auto;
 }
 .banner-container{
 	width: 100%;
@@ -260,12 +311,19 @@ input[type=submit]:hover{
 	padding: 8px 0;
 }
 
-.register-modal{
+.register-slideout{
 	float: right;
 }
 .error-messages{
 	display: none;
 	padding-top: 10px;
+}
+.reg-errors{
+	margin-bottom: 10px;
+}
+.try-again{
+	color: #c00;
+	margin-bottom: 10px;
 }
 
 /* ======================
@@ -274,6 +332,9 @@ input[type=submit]:hover{
 nav{
 	width: 100%;
 	background: #fff;
+	-webkit-box-shadow: 0 2px 5px #aaa;
+	-moz-box-shadow: 0 2px 5px #aaa;
+	box-shadow: 0 2px 5px #aaa;
 }
 nav ul {
 	list-style:none;
@@ -304,7 +365,18 @@ nav ul li a:hover{
 /* ======================
    --homepage 
    ====================== */
+.welcome{
+	margin-top: 40px;
+	float: left;
+	width: 60%;
+	margin-right: 4%;
+}
 
+.login-container{
+	margin-top: 40px;
+	float: left;
+	width: 36%;
+}
 
 /* ======================
    --all breweries list 
@@ -472,6 +544,15 @@ nav ul li a:hover{
 .ui-menu .ui-menu-icon {
 	position: static;
 	float: right;
+}
+
+/* ======================
+   --footer 
+   ====================== */
+footer{
+	margin-top: 50px;
+	background-color: #ccc;
+	padding: 30px 0;
 }
 
 /* ================================================

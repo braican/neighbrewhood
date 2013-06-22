@@ -1,5 +1,10 @@
 
 	</div><!-- .container -->
+	<footer>
+		<div class="footer-container wrapper">
+			<span>a project by <a href="http://braican.com" target="_blank">Nick Braica</a> | &copy; <?php echo date('Y'); ?></span>
+		</div>
+	</footer>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="js/jquery-ui.min.js"></script>
 	<script src="js/brewerykeeper.js"></script>
