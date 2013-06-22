@@ -3,8 +3,8 @@
 	$sid = session_id();
 	if(!$sid) {
 		session_start();
-		$u = $_SESSION['user_name'];
 	}
+	$u = $_SESSION['user_name'];
 	
 	require_once("db_util.php");
 	

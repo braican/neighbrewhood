@@ -1,10 +1,10 @@
 
 <?php include('includes/header.php'); ?>
 	<div class="wrapper clearfix">
-		<div class="welcome">
+		<div class="main-column">
 			<h1>Map your beer.</h1>
 			<p>The best way to find new favorites and get the most out of your beer drinking experience is to check it out right at the source. Log your journey and visualize your next brewery trip.</p>
-		</div><!-- .welcome -->
+		</div><!-- .main-column -->
 
 		<div class="login-container">
 
@@ -55,7 +55,7 @@
 					</div><!-- .drawer -->
 				</div><!-- .slidedown -->
 			<?php endif; ?>
-		</div>
+		</div><!-- .login-container -->
 	</div><!-- .wrapper -->
 
 <?php include('includes/footer.php'); ?>

@@ -54,6 +54,12 @@ $(document).ready(function(){
 		'top' : '0px'
 	});
 
+	// link up the floating login links
+	$('.floating-login').on('click', function(e){
+		e.preventDefault();
+		$('.login-container .slidedown .drawer').slideDown();
+	});
+
 	// register 
 	$('.register-slideout').on('click', function(e){
 		e.preventDefault();
@@ -66,6 +72,16 @@ $(document).ready(function(){
 		});
 	});
 
+	var queryString = window.location.href.substr(window.location.href.indexOf('?')+1);
+	if(queryString == 'register'){
+		var offset = $('#registration-form').offset().top;
+		console.log(offset);
+		$('html, body').animate({scrollTop : offset}, 400, function(){
+			$('#registration-form .drawer').addClass('opendrawer').slideDown(400, function(){
+				$('html, body').animate({scrollTop : offset});
+			});
+		});
+	}
 
 	// -------------------------------
 	// slidedown interaction
@@ -125,6 +141,10 @@ $(document).ready(function(){
 			success : function(data){
 				console.log(data);
 				if(data == 1){
+
+					$('.my-breweries').hide().load('includes/my-breweries-login.php?logged', function(){
+						$(this).fadeIn();
+					});
 					$('.login-container').hide().load('includes/loggedin-index.php', function(){
 						$(this).fadeIn();
 					});
@@ -148,6 +168,24 @@ $(document).ready(function(){
 			},
 			error 	: function(){
 				console.log("there was an error");
+			}
+		});
+	});
+
+	// logout
+	$(document).on('click', '.logout-btn', function(e){
+		console.log("clicked lofout");
+		e.preventDefault();
+		$.ajax({
+			type	: "POST",
+			cache	: false,
+			url		: 'util/logout.php',
+			data	: $(this).serialize(),
+			success : function(data){
+				document.location.reload();
+			},
+			error 	: function(){
+				console.log("there was an errror");
 			}
 		});
 	});
