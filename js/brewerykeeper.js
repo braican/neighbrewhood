@@ -48,6 +48,10 @@ $(document).ready(function(){
 		});
 	});
 
+	$('.login-prompt').animate({
+		'top' : '0px'
+	});
+
 	// -------------------------------
 	// FORMS
 	//
@@ -79,26 +83,35 @@ $(document).ready(function(){
 	// on loginform submit
 	$(document).on('submit', '#loginform', function(e){
 		e.preventDefault();
-
 		$.ajax({
 			type	: "POST",
 			cache	: false,
 			url		: 'util/login.php',
 			data	: $(this).serialize(),
 			success : function(data){
-				$('.login-container').html(data);
-				$('.account-links').animate({
-					'top' : '-' + accountLinksHeight + 'px'
-				}, 400, function(){
-					$('.account-nav').load('includes/login-navigation.php?logged', function(){
-						$('.login-prompt').animate({
-							'top' : '0px'
+				console.log(data);
+				if(data == 1){
+					$('.login-container').html(data);
+					$('.account-links').animate({
+						'top' : '-' + accountLinksHeight + 'px'
+					}, 400, function(){
+						$('.account-nav').load('includes/login-navigation.php?logged', function(){
+							var dynamicAcctLinksHeight = $('.account-links').outerHeight();
+							$('.account-links').css({
+								'top' : '-' + dynamicAcctLinksHeight + 'px'
+							});
+							$('.login-prompt').animate({
+								'top' : '0px'
+							});
 						});
-					});
-				});
+					});	
+				} else {
+					//console.log("no login");
+					$('.error-messages').html('Wrong username or password').slideDown();
+				}
 			},
 			error 	: function(){
-				console.log("there was an errror");
+				console.log("there was an error");
 			}
 		});
 	});

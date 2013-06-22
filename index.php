@@ -1,7 +1,11 @@
 
 <?php include('includes/header.html'); ?>
-	
-	<div class="login-container">
+	<div class="welcome wrapper">
+		<h2>Where will your next beer be?</h2>
+		<p></p>
+	</div>
+
+	<div class="login-container wrapper">
 
 		<?php if($login->isUserLoggedIn() == true) : ?>
 			
