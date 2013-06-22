@@ -10,14 +10,13 @@
 	$sid = session_id();
 	if(!$sid) {
 		session_start();
-	}
-	
+	}	
 ?>
 
 	<?php if($loggedin == true) : ?>
 		<div class="login-prompt">hey <?php echo $_SESSION['user_name']; ?></div>
 		<div class="account-links">
-			<a href="?logout">Logout</a>
+			<a href="?logout" class="logout-btn">Logout</a>
 			<a href="add-brewery.php">Add a Brewery</a>
 			<a href="#" class="close-account-links">Close</a>
 		</div>
@@ -31,5 +30,6 @@
 			    <input type="submit"  name="login" value="Log in" />
 			    <span class="register-modal"><a href="#">or register</a></span>
 			</form>
+			<div class="error-messages"></div>
 		</div>
 	<?php endif; ?>
