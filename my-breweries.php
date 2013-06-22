@@ -1,12 +1,5 @@
-<?php require_once('util/lock.php'); ?>
 
 <?php include('includes/header.html'); ?>
-
-	<!-- <h1>BreweryKeeper</h1> -->
-
-<?php include('includes/nav.html'); ?>
-
-<?php $u = $_SESSION['user_name']; ?>
 
 	<?php if ($login->isUserLoggedIn() == true) : ?>
 		
@@ -35,7 +28,7 @@
 	<?php endif; ?>
 
 	<?php if ($login->isUserLoggedIn() == true) : ?>
-	
+
 		<div class="errors"></div>
 		<div class="user-breweries">
 
