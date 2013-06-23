@@ -116,6 +116,12 @@ $(document).ready(function(){
 
 
 	// -------------------------------
+	// google maps
+	//
+	mapInit();
+
+
+	// -------------------------------
 	// FORMS
 	//
 
@@ -240,4 +246,33 @@ $(document).ready(function(){
 	});
 });
 
+function mapInit(){
+	var mapOptions = {
+		center: new google.maps.LatLng(42.16208590, -72.4711490),
+		zoom: 8,
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+	var map = new google.maps.Map(document.getElementById("map-all-breweries"), mapOptions);
 
+	$.ajax({
+		url		: "util/map-all-breweries.php",
+		success : function(addresses){
+			var address_obj = $.parseJSON(addresses);
+			var i;
+			for(i = 0; i < address_obj.length; i++){
+				var geocoder = new google.maps.Geocoder();
+				geocoder.geocode({'address' : address_obj[i]}, function(result, status){
+					if (status == google.maps.GeocoderStatus.OK) {
+						console.log(result[0]['geometry']['location']);
+						var lat = result[0]['geometry']['location']['jb'];
+						var lng = result[0]['geometry']['location']['kb'];
+						var marker = new google.maps.Marker({
+							position: new google.maps.LatLng(lat, lng),
+							map: map
+						});
+					}
+				});
+			}
+		}
+	});
+}
