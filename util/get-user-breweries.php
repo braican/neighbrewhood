@@ -20,6 +20,14 @@
 	// echo $sql;
 	if(!$result = $db->query($sql)){
 		die('There was an error running the query [' . $db->error . ']');
+	} else {
+?>
+	<div class="row header clearfix">
+		<div class="name">Brewery</div>
+		<div class="city">City</div>
+		<div class="state">State</div>
+	</div>
+<?php
 	}
 
 	while($row = $result->fetch_assoc()) :

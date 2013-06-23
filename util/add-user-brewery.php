@@ -31,9 +31,8 @@
 			}
 
 			if($count_query->num_rows != 0){
-				die('You already added this brewery');
+				die('<p>You already added this brewery</p>');
 			}
-
 
 			$brewery_sql = "INSERT INTO " . $user . " VALUES (" . $id . ")";
 
@@ -42,7 +41,7 @@
 				die('There was an error running the query [' . $db->error . ']');
 			}
 		} else{
-			echo 'Brewery not found. try entering it';
+			echo '<p>Brewery not found. Why not <a href="add-brewery.php">add it</a> to the master list?</p>';
 		}
 		mysqli_close($db);
 	} else {
