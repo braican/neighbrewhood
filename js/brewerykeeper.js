@@ -54,10 +54,23 @@ $(document).ready(function(){
 		'top' : '0px'
 	});
 
-	// link up the floating login links
+	// link up floating login links
+	// - these can exist anywhere
 	$('.floating-login').on('click', function(e){
 		e.preventDefault();
-		$('.login-container .slidedown .drawer').slideDown();
+		if($('.login-container .slidedown .drawer').length != 0){
+			$('.login-container .slidedown .drawer').slideDown();	
+		} else {
+			$('.login-prompt').animate({
+				'top' : '-' + $('.login-prompt').outerHeight() + 'px'
+			}, 200, function(){
+				$('.account-links').css({
+					'display' : 'block'
+				}).animate({
+					'top' : '0px'
+				});
+			});
+		}
 	});
 
 	// register 
@@ -107,7 +120,6 @@ $(document).ready(function(){
 	//
 
 	// insert brewery form
-	// brewery.php
 	$('#insert-brewery').on('submit', function(e){
 	    e.preventDefault();
 	    console.log("gogo");
@@ -141,8 +153,10 @@ $(document).ready(function(){
 			success : function(data){
 				console.log(data);
 				if(data == 1){
-
-					$('.my-breweries').hide().load('includes/my-breweries-login.php?logged', function(){
+					if($('.brewery-list').length != 0){
+						window.location.href = 'my-breweries.php';
+					}
+					$('.my-breweries').hide().load('includes/my-breweries-include.php?logged', function(){
 						$(this).fadeIn();
 					});
 					$('.login-container').hide().load('includes/loggedin-index.php', function(){
@@ -190,6 +204,7 @@ $(document).ready(function(){
 		});
 	});
 
+	// register
 	$('#registerform').on('submit', function(e){
 		e.preventDefault();
 		$.ajax({
@@ -206,6 +221,7 @@ $(document).ready(function(){
 		});
 	});
 
+	// add user breweries
 	$('#add-user-brewery').on('submit', function(e){
 		e.preventDefault();
 		$.ajax({

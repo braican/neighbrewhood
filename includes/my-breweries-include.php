@@ -14,9 +14,8 @@
 ?>
 
 <?php if ($loggedin == true) : ?>
-		
-	<div class="errors"></div>
-	<div class="user-breweries">
+	<h1>My Breweries</h1>
+	<section class="user-breweries">
 		<?php
 			if(file_exists('util/get-user-breweries.php')){
 				require_once('util/get-user-breweries.php');
@@ -24,16 +23,19 @@
 				require_once('../util/get-user-breweries.php');
 			}
 		?>
-	</div>
+	</section>
 
-	<h1>Been to a new place?</h1>
-	<!-- add brewery -->
-	<form method="post" id="add-user-brewery">
-	    <label for="add_brewery">Name</label>
-	    <input id="add_brewery" type="text" name="add_brewery" required />
-	    <input type="hidden" name="user" value="<?php echo $u; ?>">
-	    <input type="submit"  name="login" value="Add" />
-	</form>
+	<section>
+		<h3>Been to a new place?</h3>
+		<div class="errors"></div>
+		<!-- add brewery -->
+		<form method="post" id="add-user-brewery">
+		    <label for="add_brewery">Name</label>
+		    <input id="add_brewery" type="text" name="add_brewery" required />
+		    <input type="hidden" name="user" value="<?php echo $u; ?>">
+		    <input type="submit"  name="login" value="Add" />
+		</form>
+	</section>
 <?php else : ?>
 	<div class="main-column">
 		<h2>Track your breweries.</h2>
