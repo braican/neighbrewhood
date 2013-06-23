@@ -1,7 +1,7 @@
 
 <?php include('includes/header.php'); ?>
-	<div>
-		<!-- <h1>Add a brewery</h1> -->
+	<section class="wrapper">
+		<h1>Add a brewery</h1>
 		<form id="insert-brewery" action="util/insert-brewery.php">
 			<input type="text" name="brewery_name" placeholder="name">
 			<input type="text" name="brewery_address" placeholder="address">
@@ -65,8 +65,6 @@
 			<input type="text" name="ba_link" placeholder="link to BeerAdvocate.com" size="30">
 			<input type="submit" value="Submit">
 		</form>
-	</div>
-
-	<div class="success-text"></div>
+	</div><!-- .wrapper -->
 
 <?php include('includes/footer.php'); ?>

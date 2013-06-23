@@ -97,6 +97,9 @@ body{
    ================================================ */
 
 img{max-width: 100%;}
+.errors p{
+	margin-bottom: 20px;
+}
 
 /* ======================
    --typography 
@@ -179,11 +182,33 @@ input[type=submit]:hover{
 /* ======================
    --layout 
    ====================== */
+
+/* page structure
+---------------------------------- */
 .wrapper{
 	width: 80%;
 	max-width: 600px;
 	margin: 0 auto;
 }
+section{
+	margin-bottom: 40px;
+}
+
+/* table rows
+---------------------------------- */
+.row:nth-child(2n+2){
+	background: #ccc;
+}
+.row div{
+	float: left;
+	padding: 10px 2%;
+}
+.row.header{
+	font-weight: bold;
+	font-size: .6em;
+	text-transform: uppercase;
+}
+
 
 /* ======================
    --slidedowns 
@@ -335,6 +360,7 @@ nav{
 	-webkit-box-shadow: 0 2px 5px #aaa;
 	-moz-box-shadow: 0 2px 5px #aaa;
 	box-shadow: 0 2px 5px #aaa;
+	margin-bottom: 40px;
 }
 nav ul {
 	list-style:none;
@@ -366,47 +392,51 @@ nav ul li a:hover{
    --homepage 
    ====================== */
 .main-column{
-	margin-top: 40px;
 	float: left;
 	width: 60%;
 	margin-right: 4%;
 }
 
 .login-container{
-	margin-top: 40px;
 	float: left;
 	width: 36%;
 }
 
 /* ======================
-   --all breweries list 
+   --brewery list 
    ====================== */
-
-.brewery-list .row div{
-	float: left;
+.brewery-list{
+	margin-top: 20px;
 }
 .brewery-list .row .name{
-	width: 25%;
+	width: 30%;
 }
 .brewery-list .row .address{
-	width: 25%;
+	width: 35%;
 }
 .brewery-list .row .city{
-	width: 10%;
+	width: 15%;
 }
 .brewery-list .row .state{
-	width: 10%;
+	width: 8%;
 }
 .brewery-list .row .brewers-website{
-	width: 15%;
-}
-.brewery-list .row .ba-link{
-	width: 15%;
+	width: 12%;
 }
 
 /* ======================
    --my breweries list 
    ====================== */
+.user-breweries .row .name{
+	width: 50%;
+}
+.user-breweries .row .city{
+	width: 40%;
+}
+.user-breweries .row .state{
+	width: 10%;
+}
+
 .ui-helper-hidden {
 	display: none;
 }
@@ -456,9 +486,6 @@ nav ul li a:hover{
 	z-index: 100;
 }
 
-
-
-
 /* Misc visuals
 ----------------------------------*/
 
@@ -482,6 +509,7 @@ nav ul li a:hover{
 	margin: 0;
 	display: block;
 	outline: none;
+	background: #fff;
 }
 .ui-menu .ui-menu {
 	margin-top: -3px;
@@ -511,8 +539,7 @@ nav ul li a:hover{
 }
 .ui-menu .ui-menu-item a.ui-state-focus,
 .ui-menu .ui-menu-item a.ui-state-active {
-	font-weight: normal;
-	margin: -1px;
+	background: #ddd;
 }
 
 .ui-menu .ui-state-disabled {
