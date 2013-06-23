@@ -188,12 +188,8 @@ input[type=submit]:hover{
 .wrapper{
 	width: 80%;
 	max-width: 600px;
-	margin: 0 auto;
+	margin: 0 auto 40px auto;
 }
-section{
-	margin-bottom: 40px;
-}
-
 /* table rows
 ---------------------------------- */
 .row:nth-child(2n+2){
@@ -244,6 +240,14 @@ section{
 	-o-transition: all .2s linear;
 	-moz-transition: all .2s linear;
 	transition: all .2s linear;
+}
+
+/* ======================
+   --maps 
+   ====================== */
+.map{
+	height: 600px;
+	
 }
 
 /* ======================
