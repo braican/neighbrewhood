@@ -13,6 +13,13 @@
 		$brewery_state != "" && $brewery_zip != "") {
 		//connect to database
 		$db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
+		$geocode_addr = "$brewery_address $brewery_city $brewery_state $brewery_zip";
+		$full_address = str_replace(" ", "+", urlencode($geocode_addr));
+
+		$geocoded = geoCode($addr);
+		print_r($geocoded);
+
 		if($db->connect_errno){
 			die("There was a problem connecting to the database");
 		}
@@ -28,15 +35,38 @@
 			  		$brewery_website . "', '" .
 			  		$ba_lnk . "')";
 
-		echo $sql;
+		//echo $sql;
 
-		if(!$result = $db->query($sql)){
-			die('There was an error running the query [' . $db->error . ']');
-		}
-		echo "<p>$brewery_name added.</p>";
+		// if(!$result = $db->query($sql)){
+		// 	die('There was an error running the query [' . $db->error . ']');
+		// }
+		// echo "<p>$brewery_name added.</p>";
 
 		mysqli_close($db);
 	} else {
 		echo "no dice";
+	}
+
+	function geoCode($addr){
+		$details_url = "http://maps.googleapis.com/maps/api/geocode/json?address=" . $addr . "&sensor=false";
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $details_url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		$response = json_decode(curl_exec($ch), true);
+
+		if($response['status'] != 'OK'){
+			return 'aw shite';
+		}
+
+		$geo = $response['results'][0]['geometry'];
+
+		$lat = $geo['location']['lat'];
+		$lng = $geo['location']['lng'];
+
+		$array = array(
+				'lat' => $lat,
+				'lng' => $lng
+			);
+		return $array;
 	}
 ?>
