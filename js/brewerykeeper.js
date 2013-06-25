@@ -118,7 +118,8 @@ $(document).ready(function(){
 	// -------------------------------
 	// google maps
 	//
-	mapInit();
+	if($('.map').length > 0)
+		mapInit();
 
 
 	// -------------------------------
@@ -128,7 +129,7 @@ $(document).ready(function(){
 	// insert brewery form
 	$('#insert-brewery').on('submit', function(e){
 	    e.preventDefault();
-	    console.log("gogo");
+	    
 	    $.ajax({
 	        type     : "POST",
 	        cache    : false,
@@ -236,6 +237,7 @@ $(document).ready(function(){
 			url		: 'util/add-user-brewery.php',
 			data	: $(this).serialize(),
 			success : function(data){
+				console.log(data);
 				$('.errors').html(data);
 				$('.user-breweries').load('util/get-user-breweries.php');
 			},
