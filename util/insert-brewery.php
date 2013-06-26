@@ -17,7 +17,7 @@
 		$geocode_addr = "$brewery_address $brewery_city $brewery_state $brewery_zip";
 		$full_address = str_replace(" ", "+", urlencode($geocode_addr));
 
-		$geocoded = geoCode($addr);
+		$geocoded = geoCode($full_address);
 		print_r($geocoded);
 
 		if($db->connect_errno){
