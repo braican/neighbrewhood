@@ -16,31 +16,31 @@
 
 		$geocode_addr = "$brewery_address $brewery_city $brewery_state $brewery_zip";
 		$full_address = str_replace(" ", "+", urlencode($geocode_addr));
-
 		$geocoded = geoCode($full_address);
-		print_r($geocoded);
 
 		if($db->connect_errno){
 			die("There was a problem connecting to the database");
 		}
 
 		// add the new project to the project database
-		$sql =	"INSERT INTO `brewery_list`(`name`, `address`, `city`, `state`, `zip`, `brewers_website`, `ba_link`) " .
-			  	"VALUES ('" .
-			  		$brewery_name . "', '" .
-			  		$brewery_address . "', '" .
-			  		$brewery_city . "', '" .
-			  		$brewery_state . "', '" .
-			  		$brewery_zip . "', '" .
-			  		$brewery_website . "', '" .
-			  		$ba_lnk . "')";
+		$sql =	"INSERT INTO brewery_list(name, address, city, state, zip, lat, lng, brewers_website, ba_link) " .
+			  	"VALUES (
+			  		'$brewery_name',
+			  		'$brewery_address',
+			  		'$brewery_city',
+			  		'$brewery_state',
+			  		'$brewery_zip',
+			  		'" . $geocoded['lat'] . "',
+			  		'" . $geocoded['lng'] . "',
+			  		'$brewery_website',
+			  		'$ba_lnk')";
 
-		//echo $sql;
+		echo $sql;
 
-		// if(!$result = $db->query($sql)){
-		// 	die('There was an error running the query [' . $db->error . ']');
-		// }
-		// echo "<p>$brewery_name added.</p>";
+		if(!$result = $db->query($sql)){
+			die('There was an error running the query [' . $db->error . ']');
+		}
+		echo "<p>$brewery_name added.</p>";
 
 		mysqli_close($db);
 	} else {
