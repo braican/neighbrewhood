@@ -7,18 +7,26 @@
 
 	// the array to return
 	$return_array = array();
-
-	$sql = "SELECT address, city, state FROM brewery_list";
+	if(isset($_GET['mine'])){
+		$sql =  "SELECT name, lat, lng " .
+				"FROM brewery_list " .
+				"INNER JOIN braican " .
+				"ON brewery_list.brewery_id = braican.brewery_id";
+	} else {
+		$sql =  "SELECT DISTINCT name, lat, lng " .
+				"FROM braican, brewery_list " .
+				"WHERE brewery_list.brewery_id NOT IN " .
+					"(SELECT braican.brewery_id FROM braican)";
+	}
 
 	if(!$result = $db->query($sql)) {
 		die('There was an error running the query [' . $db->error . ']');
 	}
 
 	while($row = $result->fetch_assoc()){
-		$add = $row['address'] . ', ' . $row['city'] . ' ' . $row['state'];
-
-		array_push($return_array, $add);
+		array_push($return_array, $row);
 	}
+	
 
 	mysqli_close($db);
 
