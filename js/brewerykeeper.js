@@ -248,33 +248,62 @@ $(document).ready(function(){
 	});
 });
 
+
+// -------------------------------
+// map init
+//
+var map;
 function mapInit(){
 	var mapOptions = {
 		center: new google.maps.LatLng(42.16208590, -72.4711490),
 		zoom: 8,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-	var map = new google.maps.Map(document.getElementById("map-all-breweries"), mapOptions);
+	map = new google.maps.Map(document.getElementById("map-all-breweries"), mapOptions);
 
+	// var script = '<script type="text/javascript" src="http://google-maps-' +
+ //          'utility-library-v3.googlecode.com/svn/trunk/infobubble/src/infobubble.js';
+ //   document.write(script);
+
+	//ajax for the visited breweries
 	$.ajax({
-		url		: "util/map-all-breweries.php",
-		success : function(addresses){
-			var address_obj = $.parseJSON(addresses);
-			var i;
-			for(i = 0; i < address_obj.length; i++){
-				var geocoder = new google.maps.Geocoder();
-				geocoder.geocode({'address' : address_obj[i]}, function(result, status){
-					if (status == google.maps.GeocoderStatus.OK) {
-						console.log(result[0]['geometry']['location']);
-						var lat = result[0]['geometry']['location']['jb'];
-						var lng = result[0]['geometry']['location']['kb'];
-						var marker = new google.maps.Marker({
-							position: new google.maps.LatLng(lat, lng),
-							map: map
-						});
-					}
-				});
+		url		: "util/map-all-breweries.php?mine",
+		success : function(brewery){
+			var brewery_obj = $.parseJSON(brewery);
+			for(var i = 0; i < brewery_obj.length; i++){
+				putMarker(brewery_obj, i, 'assets/marker-visited.png');
 			}
 		}
+	});
+
+	// ajax for not visited breweries
+	$.ajax({
+		url		: "util/map-all-breweries.php",
+		success : function(brewery){
+			var brewery_obj = $.parseJSON(brewery);
+
+			for(var i = 0; i < brewery_obj.length; i++){
+				putMarker(brewery_obj, i, 'assets/no-marker.png');
+			}
+		}
+	});
+}
+
+function putMarker(brewery_obj, i, icon){
+	var name = brewery_obj[i]['name'];
+	var marker = new google.maps.Marker({
+		position: new google.maps.LatLng(brewery_obj[i]['lat'], brewery_obj[i]['lng']),
+		icon:icon,
+		flat:true,
+		map: map
+	});
+	new google.maps.event.addListener(marker, 'click', function(){
+
+	   // new google.maps.InfoWindow({
+	   //     content: '<p>' + name + '</p>'
+	   // }).open(map, marker);
+		new InfoBubble({
+			content: name
+		}).open(map, marker);
 	});
 }
