@@ -15,7 +15,8 @@
 
 	$sql =	"SELECT b.name, b.city, b.state " .
 			"FROM brewery_list b," . $u . " " .
-			"WHERE b.brewery_id = " . $u . ".brewery_id";
+			"WHERE b.brewery_id = " . $u . ".brewery_id " .
+			"ORDER BY b.name";
 
 	// echo $sql;
 	if(!$result = $db->query($sql)){
