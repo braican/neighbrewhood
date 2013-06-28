@@ -269,7 +269,8 @@ function mapInit(){
 	//ajax for the visited breweries
 	$.ajax({
 		url		: "util/map-all-breweries.php?mine",
-		success : function(brewery){
+		success  : function(brewery){
+			console.log(brewery);
 			var brewery_obj = $.parseJSON(brewery);
 			for(var i = 0; i < brewery_obj.length; i++){
 				putMarker(brewery_obj, i, 'assets/marker-visited.png');
@@ -280,7 +281,8 @@ function mapInit(){
 	// ajax for not visited breweries
 	$.ajax({
 		url		: "util/map-all-breweries.php",
-		success : function(brewery){
+		success  : function(brewery){
+			console.log(brewery);
 			var brewery_obj = $.parseJSON(brewery);
 
 			for(var i = 0; i < brewery_obj.length; i++){
