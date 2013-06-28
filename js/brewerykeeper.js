@@ -234,12 +234,13 @@ $(document).ready(function(){
 		$.ajax({
 			type	: "POST",
 			cache	: false,
-			url		: 'util/add-user-brewery.php',
+			url	: 'util/add-user-brewery.php',
 			data	: $(this).serialize(),
 			success : function(data){
 				console.log(data);
 				$('.errors').html(data);
 				$('.user-breweries').load('util/get-user-breweries.php');
+				$(this).find('input[type=text]').val('');
 			},
 			error 	: function(){
 				console.log("there was an errror");
