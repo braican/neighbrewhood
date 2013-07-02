@@ -117,6 +117,26 @@ $(document).ready(function(){
 		}
 	});
 
+	// -------------------------------
+	// brewery list interactions
+	//
+	$('.brewery-list .row').on('click', function(event) {
+		event.preventDefault();
+		console.log($(this));
+		if($(window).width() <= 680){
+			if($(this).find('.small-address').length != 0){
+				$(this).find('.small-address').remove();
+			} else {
+				var addr = $(this).find('.address').text();
+				$(this).append('<div class="small-address">' + addr + '</div>');	
+			}			
+		}
+
+		var lat = $(this).attr('data-lat'),
+			lng = $(this).attr('data-lng'),
+			name = $(this).find('.name').text();
+		centerMapOnPoint(lat, lng, name);
+	});
 
 	// -------------------------------
 	// google maps
@@ -249,29 +269,16 @@ $(document).ready(function(){
 			}
 		});
 	});
-
-	// -------------------------------
-	// media queries
-	//
-	$('.brewery-list .row').on('click', function(event) {
-		event.preventDefault();
-		console.log('clicked');
-		if($(window).width() <= 680){
-			if($(this).find('.small-address').length != 0){
-				$(this).find('.small-address').remove();
-			} else {
-				var addr = $(this).find('.address').text();
-				$(this).append('<div class="small-address">' + addr + '</div>');	
-			}			
-		}
-	});
 });
 
 
 // -------------------------------
 // map init
 //
-var map;
+var map,
+	infobubble = null,
+	markers = new Array();
+
 function mapInit(){
 	var mapOptions = {
 		center: new google.maps.LatLng(42.16208590, -72.4711490),
@@ -306,6 +313,7 @@ function mapInit(){
 	});
 }
 
+// places all the markers
 function putMarker(brewery_obj, i, icon){
 	var name = brewery_obj[i]['name'];
 	var marker = new google.maps.Marker({
@@ -314,13 +322,35 @@ function putMarker(brewery_obj, i, icon){
 		flat:true,
 		map: map
 	});
+	
 	new google.maps.event.addListener(marker, 'click', function(){
-
 	   // new google.maps.InfoWindow({
 	   //     content: '<p>' + name + '</p>'
 	   // }).open(map, marker);
-		new InfoBubble({
-			content: name
-		}).open(map, marker);
+		if(infobubble){
+			infobubble.close();
+		}
+
+		infobubble = new InfoBubble({
+			content: name,
+			padding:20
+		});
+		infobubble.open(map, marker);
 	});
+	markers[name] = marker;
+}
+
+// centers the map on a lat, lng point
+function centerMapOnPoint(lat, lng, name){
+	map.panTo(new google.maps.LatLng(lat, lng));
+	map.setZoom(12);
+	if(infobubble){
+		infobubble.close();
+	}
+
+	infobubble = new InfoBubble({
+		content: name,
+		padding:20
+	});
+	infobubble.open(map, markers[name]);
 }
