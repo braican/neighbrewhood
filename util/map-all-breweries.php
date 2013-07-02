@@ -15,6 +15,9 @@
 	if(isset($_SESSION['user_name'])){
 		$u = $_SESSION['user_name'];	
 	}
+
+	$select_all_sql = "SELECT name, lat, lng " .
+						"FROM brewery_list";
 	
 	// if the query string 'mine' is set
 	if(isset($_GET['mine'])){
@@ -24,9 +27,7 @@
 					"FROM brewery_list " .
 					"INNER JOIN " . $u . " " .
 					"ON brewery_list.brewery_id = " . $u . ".brewery_id";
-		} else { // otherwise, get outta here
-			//die();
-		}
+		} 
 	} else {
 		// if we're logged in and getting the breweries you HAVEN'T been to
 		if(isset($u)){
@@ -35,7 +36,7 @@
 					"WHERE brewery_list.brewery_id NOT IN " .
 						"(SELECT " . $u . ".brewery_id FROM " . $u . ")";
 		} else {
-			$sql =  "SELECT name, lat, lng " .
+			$sql = "SELECT name, lat, lng " .
 					"FROM brewery_list";
 		}
 	}
@@ -43,6 +44,12 @@
 	if(isset($sql)){
 		if(!$result = $db->query($sql)) {
 			die('There was an error running the query [' . $db->error . ']');
+		}
+
+		if(($result->num_rows == 0) && (!isset($_GET['mine']))){
+			if(!$result = $db->query($select_all_sql)) {
+				die('There was an error running the query [' . $db->error . ']');
+			}
 		}
 
 		while($row = $result->fetch_assoc()){

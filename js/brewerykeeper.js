@@ -61,6 +61,7 @@ $(document).ready(function(){
 		if($('.login-container .slidedown .drawer').length != 0){
 			$('.login-container .slidedown .drawer').slideDown();	
 		} else {
+			$('html, body').animate({scrollTop : 0});
 			$('.login-prompt').animate({
 				'top' : '-' + $('.login-prompt').outerHeight() + 'px'
 			}, 200, function(){
@@ -75,14 +76,16 @@ $(document).ready(function(){
 
 	// register 
 	$('.register-slideout').on('click', function(e){
-		e.preventDefault();
-		var offset = $('#registration-form').offset().top;
-		console.log(offset);
-		$('html, body').animate({scrollTop : offset}, 400, function(){
-			$('#registration-form .drawer').addClass('opendrawer').slideDown(400, function(){
-				$('html, body').animate({scrollTop : offset});
-			});
-		});
+		if($('#homepage-login-block').length != 0){
+			e.preventDefault();
+			var offset = $('#registration-form').offset().top;
+			console.log(offset);
+			$('html, body').animate({scrollTop : offset}, 400, function(){
+				$('#registration-form .drawer').addClass('opendrawer').slideDown(400, function(){
+					$('html, body').animate({scrollTop : offset});
+				});
+			});	
+		}
 	});
 
 	var queryString = window.location.href.substr(window.location.href.indexOf('?')+1);
@@ -150,7 +153,7 @@ $(document).ready(function(){
 	});
 
 	// on loginform submit
-	$(document).on('submit', '#loginform', function(e){
+	$(document).on('submit', '#loginform-index, #loginform-header', function(e){
 		e.preventDefault();
 		$.ajax({
 			type	: "POST",
@@ -183,7 +186,6 @@ $(document).ready(function(){
 						});
 					});	
 				} else {
-					//console.log("no login");
 					$('.error-messages').html('Wrong username or password').slideDown();
 				}
 			},
@@ -247,6 +249,22 @@ $(document).ready(function(){
 			}
 		});
 	});
+
+	// -------------------------------
+	// media queries
+	//
+	$('.brewery-list .row').on('click', function(event) {
+		event.preventDefault();
+		console.log('clicked');
+		if($(window).width() <= 680){
+			if($(this).find('.small-address').length != 0){
+				$(this).find('.small-address').remove();
+			} else {
+				var addr = $(this).find('.address').text();
+				$(this).append('<div class="small-address">' + addr + '</div>');	
+			}			
+		}
+	});
 });
 
 
@@ -261,10 +279,6 @@ function mapInit(){
 		mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 	map = new google.maps.Map(document.getElementById("map-all-breweries"), mapOptions);
-
-	// var script = '<script type="text/javascript" src="http://google-maps-' +
- //          'utility-library-v3.googlecode.com/svn/trunk/infobubble/src/infobubble.js';
- //   document.write(script);
 
 	//ajax for the visited breweries
 	$.ajax({
