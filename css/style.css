@@ -83,6 +83,7 @@ body{
 	background: url(../assets/bg.png);
 	padding: 0;
 	margin: 0;
+	overflow-x: hidden;
 }
 
 *{
@@ -434,6 +435,9 @@ nav ul li a.active{
 	margin: 20px auto 0 auto;
 	width: 80%;
 }
+.brewery-list .row{
+	cursor: pointer;
+}
 .brewery-list .row .name{
 	width: 30%;
 }
@@ -667,5 +671,11 @@ footer{
 	.banner-container h2{
 		width: 100%;
 		left: 0;
+	}
+
+	#map-all-breweries{
+		width: 90%;
+		margin: 0 auto;
+		height: 400px;
 	}
 }

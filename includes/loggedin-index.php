@@ -1,3 +1,10 @@
+<?php
+	$sid = session_id();
+	if(!$sid) {
+		session_start();
+	}
+?>
+
 <h3>Welcome back, <?php echo $_SESSION['user_name']; ?></h3>
 <ul class="loggedin-action-items">
 	<li><a href="my-breweries.php">Go log a brewery</a></li>

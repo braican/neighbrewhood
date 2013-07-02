@@ -7,7 +7,7 @@
 		die("There was a problem connecting to the database");
 	} 
 
-	$sql = "SELECT * FROM brewery_list ORDER BY name";
+	$sql = "SELECT name, address, city, state, lat, lng, brewers_website, ba_link FROM brewery_list ORDER BY name";
 	
 	if(!$result = $db->query($sql)){
 		die('There was an error running the query [' . $db->error . ']');
@@ -31,9 +31,12 @@
 		$state = $row['state'];
 		$brewers_website = $row['brewers_website'];
 		$ba_link = $row['ba_link'];
+
+		$lat = $row['lat'];
+		$lng = $row['lng'];
 		
 ?>
-	<div class="row clearfix">
+	<div class="row clearfix" data-lat="<?php echo $lat; ?>" data-lng="<?php echo $lng; ?>">
 		<div class="name"><?php echo $name; ?></div>
 		<div class="address"><?php echo $address; ?></div>
 		<div class="city"><?php echo $city; ?></div>
