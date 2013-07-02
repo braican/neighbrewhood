@@ -190,7 +190,7 @@ input[type=submit]:hover{
 .wrapper{
 	width: 80%;
 	max-width: 600px;
-	margin: 0 auto 40px auto;
+	margin: 0 auto;
 }
 section{
 	margin-bottom: 40px;
@@ -420,11 +420,19 @@ nav ul li a.active{
 	width: 36%;
 }
 
+.loggedin-action-items{
+	list-style: none;
+}
+.loggedin-action-items li{
+	margin: 10px 0;
+}
+
 /* ======================
    --brewery list 
    ====================== */
 .brewery-list{
-	margin-top: 20px;
+	margin: 20px auto 0 auto;
+	width: 80%;
 }
 .brewery-list .row .name{
 	width: 30%;
@@ -620,7 +628,31 @@ footer{
    --media queries
    ================================================ */
 @media only screen and (max-width: 680px){
-	.site-title{top: 0;}	
+	.site-title{top: 0;}
+	.main-column{width: 100%;}
+	.login-container{
+		width: 100%;
+		margin-top: 40px;
+	}
+	.brewery-list{
+		width: 100%;
+	}
+
+	.brewery-list .row .name{
+		width: 50%;
+	}
+	.brewery-list .row .address{
+		display: none;
+	}
+	.brewery-list .row .city{
+		width: 30%;
+	}
+	.brewery-list .row .state{
+		width: 10%;
+	}
+	.brewery-list .row .brewers-website{
+		width: 10%;
+	}
 }
 
 @media only screen and (max-width: 480px){

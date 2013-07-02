@@ -6,7 +6,7 @@
 			<p>The best way to find new favorites and get the most out of your beer drinking experience is to check it out right at the source. Log your journey and visualize your next brewery trip.</p>
 		</div><!-- .main-column -->
 
-		<div class="login-container">
+		<div class="login-container" id="homepage-login-block">
 
 			<?php if($login->isUserLoggedIn() == true) : ?>
 				
@@ -18,11 +18,12 @@
 					<p class="slidedown-trigger">Login</p>
 					<div class="drawer">
 						<!-- login form box -->
-						<form method="post" action="util/login.php" id="loginform">
+						<form method="post" action="util/login.php" id="loginform-index">
 						    <input class="login_input" type="text" name="user_name" required placeholder="username"/>
 						    <input class="login_input" type="password" name="user_password" autocomplete="off" required placeholder="password" />
 						    <input type="submit"  name="login" value="Log in" />
 						</form>
+						<div class="error-messages"></div>
 					</div><!-- .drawer -->
 				</div><!-- .slidedown -->
 
