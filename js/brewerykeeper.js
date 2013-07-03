@@ -269,6 +269,13 @@ $(document).ready(function(){
 			}
 		});
 	});
+
+	// zipsearch
+	$('#zipsearch').on('submit', function(event) {
+		event.preventDefault();
+		var zip = $(this).find('input[name=zipsearch]').val();
+		moveMap(zip)
+	});
 });
 
 
@@ -277,6 +284,7 @@ $(document).ready(function(){
 //
 var map,
 	infobubble = null,
+	geocoder = new google.maps.Geocoder();
 	markers = new Array();
 
 function mapInit(){
@@ -353,4 +361,16 @@ function centerMapOnPoint(lat, lng, name){
 		padding:20
 	});
 	infobubble.open(map, markers[name]);
+}
+
+// changes the address
+function moveMap(address){
+	geocoder.geocode({'address' : address}, function(results, status){
+		if(status == google.maps.GeocoderStatus.OK){
+			map.panTo(results[0].geometry.location);
+			map.setZoom(12);
+		} else {
+			alert('not successful: ' + status);
+		}
+	});
 }
