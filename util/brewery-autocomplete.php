@@ -5,10 +5,14 @@
 		die("There was a problem connecting to the database");
 	}
 
+  $q = $db->real_escape_string($_GET["term"]);
+
 	// the array to return
 	$return_array = array();
 
-	$sql = "SELECT name FROM brewery_list WHERE name LIKE '%". mysql_real_escape_string($_GET['term']) . "%'";
+	$sql = "SELECT name FROM brewery_list WHERE name LIKE '%$q%'";
+
+  echo $sql;
 
 	if(!$result = $db->query($sql)) {
 		die('There was an error running the query [' . $db->error . ']');
