@@ -12,8 +12,6 @@
 
 	$sql = "SELECT name FROM brewery_list WHERE name LIKE '%$q%'";
 
-  echo $sql;
-
 	if(!$result = $db->query($sql)) {
 		die('There was an error running the query [' . $db->error . ']');
 	}
