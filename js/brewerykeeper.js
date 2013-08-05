@@ -120,21 +120,21 @@ $(document).ready(function(){
 	// -------------------------------
 	// brewery list interactions
 	//
-	$('.brewery-list .row').on('click', function(event) {
+	$('.brewery-list .row .name').on('click', function(event) {
 		event.preventDefault();
 		console.log($(this));
 		if($(window).width() <= 680){
-			if($(this).find('.small-address').length != 0){
-				$(this).find('.small-address').remove();
+			if($(this).siblings('.small-address').length != 0){
+				$(this).siblings('.small-address').remove();
 			} else {
-				var addr = $(this).find('.address').text();
+				var addr = $(this).siblings('.address').text();
 				$(this).append('<div class="small-address">' + addr + '</div>');	
 			}			
 		}
 
-		var lat = $(this).attr('data-lat'),
-			lng = $(this).attr('data-lng'),
-			name = $(this).find('.name').text();
+		var lat = $(this).parent().attr('data-lat'),
+			lng = $(this).parent().attr('data-lng'),
+			name = $(this).text();
 		centerMapOnPoint(lat, lng, name);
 	});
 
