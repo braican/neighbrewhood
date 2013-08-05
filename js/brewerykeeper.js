@@ -128,7 +128,7 @@ $(document).ready(function(){
 				$(this).siblings('.small-address').remove();
 			} else {
 				var addr = $(this).siblings('.address').text();
-				$(this).append('<div class="small-address">' + addr + '</div>');	
+				$(this).parent().append('<div class="small-address">' + addr + '</div>');	
 			}			
 		}
 
