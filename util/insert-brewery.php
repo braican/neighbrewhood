@@ -14,6 +14,14 @@
 		//connect to database
 		$db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
+		$brewery_name = $db->real_escape_string($brewery_name);
+		$brewery_address = $db->real_escape_string($brewery_address);
+		$brewery_city = $db->real_escape_string($brewery_city);
+		$brewery_state = $db->real_escape_string($brewery_state);
+		$brewery_zip = $db->real_escape_string($brewery_zip);
+		$brewery_website = $db->real_escape_string($brewery_website);
+		$ba_lnk = $db->real_escape_string($ba_lnk);
+
 		$geocode_addr = "$brewery_address $brewery_city $brewery_state $brewery_zip";
 		$full_address = str_replace(" ", "+", urlencode($geocode_addr));
 		$geocoded = geoCode($full_address);

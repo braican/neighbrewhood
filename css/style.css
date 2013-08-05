@@ -456,6 +456,9 @@ nav ul li a.active{
 	width: 12%;
 }
 
+.small-address{
+	padding-right: 0;
+}
 /* ======================
    --my breweries list 
    ====================== */
