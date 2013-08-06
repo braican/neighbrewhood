@@ -43,16 +43,34 @@
 			  		'$brewery_website',
 			  		'$ba_lnk')";
 
-		echo $sql;
-
 		if(!$result = $db->query($sql)){
-			die('There was an error running the query [' . $db->error . ']');
+			die('<p>There was an error running the query [' . $db->error . ']</p>');
 		}
 		echo "<p>$brewery_name added.</p>";
 
 		mysqli_close($db);
 	} else {
-		echo "no dice";
+		$error_msg_array = array();
+		$error_msg = "";
+		if($brewery_name == "")
+			$error_msg_array[] = 'brewery name';
+		if($brewery_address == "")
+			$error_msg_array[] = 'brewery address';
+		if($brewery_state == "")
+			$error_msg_array[] = 'brewery state';
+		if($brewery_zip == "")
+			$error_msg_array[] = 'brewery zip';
+
+		foreach($error_msg_array as $index => $err){
+			if(count($error_msg_array) == 1){
+				$error_msg = $err;
+			} else if($index == count($error_msg_array) - 1){
+				$error_msg .= 'and ' . $err;
+			} else {
+				$error_msg .= $err . ', ';
+			}
+		}
+		echo "<p>Whoops, you've gotta enter a " . $error_msg . "</p>";
 	}
 
 	function geoCode($addr){
@@ -63,7 +81,7 @@
 		$response = json_decode(curl_exec($ch), true);
 
 		if($response['status'] != 'OK'){
-			return 'aw shite';
+			return 'Error - unable to geocode data';
 		}
 
 		$geo = $response['results'][0]['geometry'];

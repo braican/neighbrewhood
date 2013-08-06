@@ -7,6 +7,7 @@
 	if ($brewery_name!="") {
 		//connect to database
 		$db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+		$brewery_name = $db->real_escape_string($brewery_name);
 		if($db->connect_errno){
 			die("There was a problem connecting to the database");
 		}

@@ -7,7 +7,7 @@
 			<input type="text" name="brewery_address" placeholder="address">
 			<input type="text" name="brewery_city" placeholder="city">
 			<select name="brewery_state"> 
-				<option value="" selected="selected">Select a State</option> 
+				<option value="" selected="selected">Select a State &nbsp;&nbsp;&#9660;</option> 
 				<option value="AL">Alabama</option> 
 				<option value="AK">Alaska</option> 
 				<option value="AZ">Arizona</option> 
@@ -65,6 +65,7 @@
 			<input type="text" name="ba_link" placeholder="link to BeerAdvocate.com" size="30">
 			<input type="submit" value="Submit">
 		</form>
+		<div class="success-text"></div>
 	</div><!-- .wrapper -->
 
 <?php include('includes/footer.php'); ?>

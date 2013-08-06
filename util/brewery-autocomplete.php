@@ -5,7 +5,7 @@
 		die("There was a problem connecting to the database");
 	}
 
-  $q = $db->real_escape_string($_GET["term"]);
+	$q = $db->real_escape_string($_GET["term"]);
 
 	// the array to return
 	$return_array = array();

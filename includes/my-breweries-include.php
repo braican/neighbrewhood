@@ -49,11 +49,12 @@
 			<p class="slidedown-trigger">Login</p>
 			<div class="drawer">
 				<!-- login form box -->
-				<form method="post" action="util/login.php" id="loginform">
+				<form method="post" action="util/login.php" id="loginform-my-breweries">
 				    <input class="login_input" type="text" name="user_name" required placeholder="username"/>
 				    <input class="login_input" type="password" name="user_password" autocomplete="off" required placeholder="password" />
 				    <input type="submit"  name="login" value="Log in" />
 				</form>
+				<div class="error-messages"></div>
 			</div><!-- .drawer -->
 		</div><!-- .slidedown -->
 	</div>

@@ -98,6 +98,9 @@ img{max-width: 100%;}
 .errors p{
 	margin-bottom: 20px;
 }
+.errors{
+	display: none;
+}
 
 /* ======================
    --typography 
@@ -182,6 +185,26 @@ input[type=submit]:hover{
 	transition: all .2s linear;
 }
 
+select{
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	padding: 8px 4px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	background-color: #efefef;
+	font-size: 14px;
+	margin: 8px 0;
+	position: relative;
+	display: block;
+}
+select .arrow{
+	font-size: 20px;
+}
+
+
 /* ======================
    --layout 
    ====================== */
@@ -251,6 +274,11 @@ section{
 	transition: all .2s linear;
 }
 
+.success-text{
+	margin-top: 10px;
+	display: none;
+}
+
 /* ======================
    --maps 
    ====================== */
@@ -286,6 +314,12 @@ section{
 	width:100%;
 	max-width: 360px;
 	margin: 0 auto;
+}
+.site-title sup{
+	font-family: 'Lato', sans-serif;
+	font-size: 14px;
+	position: absolute;
+	top:0;
 }
 .banner-container{
 	width: 100%;
