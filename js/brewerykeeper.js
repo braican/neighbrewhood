@@ -160,20 +160,23 @@ $(document).ready(function(){
 	        data	 : $(this).serialize(),
 	        success  : function(data) {
 	        	console.log(data);
-	            $(".success-text").empty().html(data).animate({opacity:1});
+	            $(".success-text").empty().html(data).slideDown();
 	            setTimeout(function(){
 	            	$(".success-text").animate({opacity:0});
-	            }, 10000);
+	            }, 8000);
+
+	            if(! data.substring(0, 9) == '<p>Whoops'){
+	            	$('#insert-brewery input[type=text]').val('');
+	            }
 	        },
 	        error	: function(){
 	        	console.log("BOO");
 	        }
 	    });
-		$('#insert-brewery input[type=text]').val('');
 	});
 
 	// on loginform submit
-	$(document).on('submit', '#loginform-index, #loginform-header', function(e){
+	$(document).on('submit', '#loginform-index, #loginform-header, #loginform-my-breweries', function(e){
 		e.preventDefault();
 		$.ajax({
 			type	: "POST",
@@ -260,7 +263,7 @@ $(document).ready(function(){
 			data	: $(this).serialize(),
 			success : function(data){
 				console.log(data);
-				$('.errors').html(data);
+				$('.errors').empty().html(data).slideDown();
 				$('.user-breweries').load('util/get-user-breweries.php');
 				$(this).find('input[type=text]').val('');
 			},

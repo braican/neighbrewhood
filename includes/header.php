@@ -26,7 +26,7 @@
 
 <header id="banner">
 	<div class="title-container">
-		<h1 class="site-title">BreweryKeeper</h1>
+		<h1 class="site-title">BreweryKeeper<sup>beta</sup></h1>
 	</div>
 	
 	<div class="account-nav">
