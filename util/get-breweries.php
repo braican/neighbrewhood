@@ -7,7 +7,24 @@
 		die("There was a problem connecting to the database");
 	} 
 
-	$sql = "SELECT name, address, city, state, lat, lng, brewers_website, ba_link FROM brewery_list ORDER BY name";
+	if(isset($_GET['state'])){
+		$filter_state = $_GET['state'];	
+	}
+
+	if(isset($_GET['city'])){
+		$filter_city = $_GET['city'];	
+	}
+	
+	if(isset($filter_state) && $filter_state != '' && isset($filter_city) && $filter_city != ''){
+		$sql = "SELECT name, address, city, state, lat, lng, brewers_website, ba_link FROM brewery_list WHERE state = '$filter_state' AND city = '$filter_city' ORDER BY name";	
+	} else if(isset($filter_state) && $filter_state != ''){
+		$sql = "SELECT name, address, city, state, lat, lng, brewers_website, ba_link FROM brewery_list WHERE state = '$filter_state' ORDER BY name";	
+	} else if(isset($filter_city) && $filter_city != ''){
+		$sql = "SELECT name, address, city, state, lat, lng, brewers_website, ba_link FROM brewery_list WHERE city = '$filter_city' ORDER BY name";	
+	} else{
+		$sql = "SELECT name, address, city, state, lat, lng, brewers_website, ba_link FROM brewery_list ORDER BY name";	
+	}
+	
 	
 	if(!$result = $db->query($sql)){
 		die('There was an error running the query [' . $db->error . ']');

@@ -6,8 +6,8 @@
 			<input type="text" name="brewery_name" placeholder="name">
 			<input type="text" name="brewery_address" placeholder="address">
 			<input type="text" name="brewery_city" placeholder="city">
-			<select name="brewery_state"> 
-				<option value="" selected="selected">Select a State &nbsp;&nbsp;&#9660;</option> 
+			<select name="brewery_state" data-placeholder="Select a state">
+				<option value=""></option>
 				<option value="AL">Alabama</option> 
 				<option value="AK">Alaska</option> 
 				<option value="AZ">Arizona</option> 

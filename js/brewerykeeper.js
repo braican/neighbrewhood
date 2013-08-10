@@ -13,6 +13,11 @@ $(document).ready(function(){
 	});
 
 	// -------------------------------
+	// chosen it up
+	//
+	$('select').chosen();
+
+	// -------------------------------
 	// login ux
 	//
 
@@ -79,7 +84,6 @@ $(document).ready(function(){
 		if($('#homepage-login-block').length != 0){
 			e.preventDefault();
 			var offset = $('#registration-form').offset().top;
-			console.log(offset);
 			$('html, body').animate({scrollTop : offset}, 400, function(){
 				$('#registration-form .drawer').addClass('opendrawer').slideDown(400, function(){
 					$('html, body').animate({scrollTop : offset});
@@ -91,7 +95,6 @@ $(document).ready(function(){
 	var queryString = window.location.href.substr(window.location.href.indexOf('?')+1);
 	if(queryString == 'register'){
 		var offset = $('#registration-form').offset().top;
-		console.log(offset);
 		$('html, body').animate({scrollTop : offset}, 400, function(){
 			$('#registration-form .drawer').addClass('opendrawer').slideDown(400, function(){
 				$('html, body').animate({scrollTop : offset});
@@ -122,7 +125,6 @@ $(document).ready(function(){
 	//
 	$('.brewery-list .row .name').on('click', function(event) {
 		event.preventDefault();
-		console.log($(this));
 		if($(window).width() <= 680){
 			if($(this).siblings('.small-address').length != 0){
 				$(this).siblings('.small-address').remove();
@@ -159,7 +161,6 @@ $(document).ready(function(){
 	        url      : $(this).attr('action'),
 	        data	 : $(this).serialize(),
 	        success  : function(data) {
-	        	console.log(data);
 	            $(".success-text").empty().html(data).slideDown();
 	            setTimeout(function(){
 	            	$(".success-text").animate({opacity:0});
@@ -170,7 +171,6 @@ $(document).ready(function(){
 	            }
 	        },
 	        error	: function(){
-	        	console.log("BOO");
 	        }
 	    });
 	});
@@ -184,7 +184,6 @@ $(document).ready(function(){
 			url		: 'util/login.php',
 			data	: $(this).serialize(),
 			success : function(data){
-				console.log(data);
 				if(data == 1){
 					if($('.brewery-list').length != 0){
 						window.location.href = 'my-breweries.php';
@@ -220,7 +219,6 @@ $(document).ready(function(){
 
 	// logout
 	$(document).on('click', '.logout-btn', function(e){
-		console.log("clicked lofout");
 		e.preventDefault();
 		$.ajax({
 			type	: "POST",
@@ -262,7 +260,6 @@ $(document).ready(function(){
 			url	: 'util/add-user-brewery.php',
 			data	: $(this).serialize(),
 			success : function(data){
-				console.log(data);
 				$('.errors').empty().html(data).slideDown();
 				$('.user-breweries').load('util/get-user-breweries.php');
 				$(this).find('input[type=text]').val('');
@@ -273,11 +270,23 @@ $(document).ready(function(){
 		});
 	});
 
+	// filter form
+	$('#filter-form').on('submit', function(event){
+		event.preventDefault();
+		var state = $(this).find('select[name="brewery_state"] option:selected').val(),
+			city = $(this).find('select[name="brewery_city"] option:selected').val();
+		console.log('util/get-breweries.php?state=' + state + '&city=' + city);
+		$('.brewery-list').load('util/get-breweries.php?state=' + state + '&city=' + city);
+	});
+	$('.filter-breweries .orange-button').on('click', function(){
+		$('.brewery-list').load('util/get-breweries.php');
+	});
+
 	// zipsearch
 	$('#zipsearch').on('submit', function(event) {
 		event.preventDefault();
 		var zip = $(this).find('input[name=zipsearch]').val();
-		moveMap(zip)
+		moveMap(zip);
 	});
 });
 
@@ -302,7 +311,6 @@ function mapInit(){
 	$.ajax({
 		url		: "util/map-all-breweries.php?mine",
 		success  : function(brewery){
-			console.log(brewery);
 			var brewery_obj = $.parseJSON(brewery);
 			for(var i = 0; i < brewery_obj.length; i++){
 				putMarker(brewery_obj, i, 'assets/marker-visited.png');
@@ -314,7 +322,6 @@ function mapInit(){
 	$.ajax({
 		url		: "util/map-all-breweries.php",
 		success  : function(brewery){
-			console.log(brewery);
 			var brewery_obj = $.parseJSON(brewery);
 
 			for(var i = 0; i < brewery_obj.length; i++){
