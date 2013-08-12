@@ -1,4 +1,4 @@
-
+<?php require_once('util/lock.php'); ?>
 <?php include('includes/header.php'); ?>
 	<div class="wrapper clearfix">
 		<div class="main-column">
@@ -31,7 +31,7 @@
 				<div class="slidedown" id="registration-form">
 					<h3>Not yet? No worries.</h3>
 					<p>Register today to start tracking your brewery journey.</p>
-					<p class="slidedown-trigger">Resgister</p>
+					<p class="slidedown-trigger">Register</p>
 					<div class="drawer">
 						<!-- register form -->
 						<form method="post" name="registerform" id="registerform">   

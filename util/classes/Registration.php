@@ -112,7 +112,7 @@ class Registration {
 
                 if ($query_check_user_name->num_rows == 1) {
 
-                    $this->errors[] = "Sorry, that user name is already taken.<br/>Please choose another one.";
+                    $this->errors[] = "Sorry, that user name is already taken. Please choose another one.";
 
                 } else {
 
