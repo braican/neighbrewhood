@@ -17,7 +17,7 @@ $registration = new Registration();
 	<div class="reg-errors">
 <?php
     foreach ($registration->errors as $error) {
-        echo '<p>' . $error . '</p>';
+        echo $error;
     }
 ?>
 	</div><!-- .reg-errors -->
@@ -51,7 +51,7 @@ if ($registration->messages) {
 <p class="slidedown-trigger">Login</p>
 	<div class="drawer">
 		<!-- login form box -->
-		<form method="post" action="util/login.php" id="loginform">
+		<form method="post" action="util/login.php" id="loginform-index">
 		    <input class="login_input" type="text" name="user_name" required placeholder="username"/>
 		    <input class="login_input" type="password" name="user_password" autocomplete="off" required placeholder="password" />
 		    <input type="submit"  name="login" value="Log in" />

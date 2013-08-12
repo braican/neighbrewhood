@@ -1,4 +1,4 @@
-<?php require_once('util/lock.php'); ?>
+
 <!doctype html>
 <html>
 <head>

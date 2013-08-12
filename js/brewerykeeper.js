@@ -235,7 +235,7 @@ $(document).ready(function(){
 	});
 
 	// register
-	$('#registerform').on('submit', function(e){
+	$(document).on('submit', '#registerform', function(e){
 		e.preventDefault();
 		$.ajax({
 			type	: "POST",

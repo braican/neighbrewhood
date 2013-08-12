@@ -1,4 +1,4 @@
-
+<?php require_once('util/lock.php'); ?>
 <?php include('includes/header.php'); ?>
 	<section class="wrapper">
 		<h1>Add a brewery</h1>
