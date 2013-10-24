@@ -1,1 +1,3 @@
 util/db_util.php
+error_log
+*/error_log

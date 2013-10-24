@@ -20,4 +20,4 @@ define("DB_NAME", "DATABASE_NAME");
 define("DB_USER", "DATABASE_USER");
 
 /** The password of the above user */
-define("DB_PASS", "DATABASE_PWD");
+define("DB_PASS", "DATABASE_PASSWORD");
