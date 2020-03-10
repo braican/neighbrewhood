@@ -1,25 +1,45 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from './views/Home.vue'
+import Vue from 'vue';
+import Router from 'vue-router';
+import firebase from 'firebase/app';
+import { adminEmail } from './config';
 
-Vue.use(Router)
+import Home from './views/Home';
 
-export default new Router({
+Vue.use(Router);
+
+const router = new Router({
   mode: 'history',
-  base: process.env.BASE_URL,
+  scrollBehavior: () => ({ x: 0, y: 0 }),
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: Home
+      path: '*',
+      redirect: '/',
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    }
-  ]
-})
+      path: '/',
+      name: 'Home',
+      component: Home,
+    },
+    {
+      path: '/admin',
+      name: 'Admin',
+      component: () => import(/* webpackChunkName: "admin" */ './views/Admin.vue'),
+      meta: {
+        requiresAdmin: true,
+      },
+    },
+  ],
+});
+
+router.beforeEach((to, from, next) => {
+  const requiresAdmin = to.matched.some(({ meta }) => meta.requiresAdmin);
+  const { currentUser } = firebase.auth();
+
+  if (requiresAdmin && (!currentUser || currentUser.email !== adminEmail)) {
+    next('/');
+  } else {
+    next();
+  }
+});
+
+export default router;

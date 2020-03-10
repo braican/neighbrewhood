@@ -2,6 +2,10 @@
 node_modules
 /dist
 
+# Hosting
+.firebase
+src/config.js
+
 # local env files
 .env.local
 .env.*.local
