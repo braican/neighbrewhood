@@ -1,0 +1,35 @@
+{
+  "name": "neighbrewhood",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "core-js": "^2.6.5",
+    "firebase": "^7.10.0",
+    "google-maps": "^4.2.3",
+    "register-service-worker": "^1.6.2",
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.3",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "@upstatement/eslint-config": "^0.4.3",
+    "@upstatement/prettier-config": "^0.3.0",
+    "@vue/cli-plugin-babel": "^3.1.1",
+    "@vue/cli-plugin-pwa": "^3.1.1",
+    "@vue/cli-service": "^3.1.1",
+    "@vue/eslint-config-prettier": "^5.0.0",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-vue": "^6.1.2",
+    "node-sass": "^4.12.0",
+    "prettier": "^1.19.1",
+    "sass-loader": "^8.0.0",
+    "vue-template-compiler": "^2.6.10"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "extends": "@upstatement/eslint-config/vue",
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    "parser": "babel-eslint",
+    "ecmaVersion": 8,
+    "sourceType": "module",
+    "allowImportExportEverywhere": true
+  }
+}
