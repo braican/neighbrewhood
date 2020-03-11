@@ -1,0 +1,16 @@
+type Brewery {
+  name: String!
+  state: String!
+  city: String!
+  zip: Int!
+  address: String!
+  latLng: [Float!]
+  website: String
+  phone: String
+}
+
+
+type Query {
+  allBreweries: [Brewery!]
+  breweriesByState(state: String!): [Brewery!]
+}

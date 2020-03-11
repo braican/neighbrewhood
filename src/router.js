@@ -1,7 +1,5 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import firebase from 'firebase/app';
-import { adminEmail } from './config';
 
 import Home from './views/Home';
 
@@ -29,17 +27,6 @@ const router = new Router({
       },
     },
   ],
-});
-
-router.beforeEach((to, from, next) => {
-  const requiresAdmin = to.matched.some(({ meta }) => meta.requiresAdmin);
-  const { currentUser } = firebase.auth();
-
-  if (requiresAdmin && (!currentUser || currentUser.email !== adminEmail)) {
-    next('/');
-  } else {
-    next();
-  }
 });
 
 export default router;
