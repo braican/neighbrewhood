@@ -88,7 +88,6 @@
 <script>
 import { Loader as GoogleMapsLoader } from 'google-maps';
 import { mapState } from 'vuex';
-import { mapsApiKey } from '../config';
 
 const getLatLng = ({ maps }, address) =>
   new Promise((resolve, reject) => {
@@ -124,8 +123,8 @@ export default {
       return;
     }
 
-    const gmapsLoader = new GoogleMapsLoader(mapsApiKey);
-    this.google = await gmapsLoader.load();
+    // const gmapsLoader = new GoogleMapsLoader(mapsApiKey);
+    // this.google = await gmapsLoader.load();
   },
   methods: {
     submit(event) {
