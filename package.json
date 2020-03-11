@@ -3,14 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "netlify dev",
+    "build": "vue-cli-service build",
+    "build:lambda": "netlify-lambda build ./src/functions",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "start": "netlify dev"
   },
   "dependencies": {
+    "@googlemaps/google-maps-services-js": "^2.3.0",
     "core-js": "^2.6.5",
     "faunadb": "^2.13.0",
     "google-maps": "^4.2.3",
+    "netlify-lambda": "^1.6.3",
     "register-service-worker": "^1.6.2",
     "uuid": "^7.0.2",
     "vue": "^2.6.10",

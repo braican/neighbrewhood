@@ -21,7 +21,12 @@ export default new Vuex.Store({
   },
   actions: {
     fetchBreweries({ commit }) {
-      commit('setBreweriesLoaded', true);
+      fetch('/.netlify/functions/getBreweries').then(resp => resp.json()).then(data => {
+        const breweries = data.map(brewery => ({ ...brewery.data }));
+        commit('setBreweries', breweries);
+        commit('setBreweriesLoaded', true);
+      });
+
     },
     addBrewery({ commit, state }) {
 

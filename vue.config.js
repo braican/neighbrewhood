@@ -8,4 +8,11 @@ module.exports = {
       msTileImage: 'img/icons/icon-144x144.png',
     },
   },
+  devServer: {
+    proxy: {
+      '^/.netlify/functions': {
+        target: 'http://localhost:34567',
+      },
+    },
+  },
 };
