@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "vue-cli-service serve",
+    "start": "netlify dev",
+    "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
   },
   "dependencies": {
     "core-js": "^2.6.5",
+    "faunadb": "^2.13.0",
     "google-maps": "^4.2.3",
     "register-service-worker": "^1.6.2",
     "uuid": "^7.0.2",

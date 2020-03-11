@@ -119,9 +119,13 @@ export default {
     ...mapState(['breweries']),
   },
   async mounted() {
+
     if (this.google !== null) {
       return;
     }
+
+    console.log(process.env);
+
 
     // const gmapsLoader = new GoogleMapsLoader(mapsApiKey);
     // this.google = await gmapsLoader.load();
