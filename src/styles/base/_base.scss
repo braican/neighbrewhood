@@ -1,11 +1,2 @@
 @import "reset";
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-
-html {
-  box-sizing: border-box;
-}
+@import "type";

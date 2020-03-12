@@ -2,19 +2,16 @@
   <div class="home">
     <h1>Neighbrewhood</h1>
 
-    {{ breweries }}
+    <BreweryList />
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import BreweryList from '@/components/BreweryList';
+
 export default {
   name: 'Home',
-  computed: {
-    ...mapState(['breweries']),
-  },
+  components: { BreweryList },
 };
 </script>
 
-<style scoped lang="scss">
-</style>

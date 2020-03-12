@@ -1,0 +1,14 @@
+html,
+button,
+input,
+textarea,
+select {
+  font-family: $ff--base;
+  line-height: $lh--base;
+  font-size: $fz--base;
+}
+
+.item-header {
+  font-size: $fz--lg;
+  font-weight: $fw--bold;
+}

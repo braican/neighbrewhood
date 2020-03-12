@@ -133,17 +133,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/styles/_abstracts.scss';
+
 form {
   width: 100%;
   max-width: 600px;
-  margin: 2rem auto;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  margin: $spacing auto;
+  padding-left: $spacing;
+  padding-right: $spacing;
 }
 
 label {
   display: block;
-  margin-bottom: 2rem;
+  margin-bottom: $spacing;
 }
 input,
 textarea {
