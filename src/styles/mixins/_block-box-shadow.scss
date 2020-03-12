@@ -1,0 +1,27 @@
+@mixin block-box-shadow($depth: 8) {
+  // $shadow: "1px 1px 0 rgba(darken($c--orange, 45%), 0.4)";
+  $shadow: ();
+  @for $i from 1 to $depth {
+    $shadow: append($shadow, #{$i}px #{$i}px 0 darken($c--orange, 30%), comma);
+  }
+
+  box-shadow: $shadow;
+  margin-bottom: #{$depth}px;
+
+  &:active {
+    $activeShadow: ();
+
+    @for $i from 1 to $depth - 2 {
+      $activeShadow: append(
+        $activeShadow,
+        #{$i}px #{$i}px 0 darken($c--orange, 30%),
+        comma
+      );
+    }
+
+    position: relative;
+    box-shadow: $activeShadow;
+    top: 2px;
+    left: 2px;
+  }
+}

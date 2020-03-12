@@ -12,3 +12,31 @@ select {
   font-size: $fz--lg;
   font-weight: $fw--bold;
 }
+
+.section-header {
+  font-size: $fz--xl;
+  font-weight: $fw--bold;
+}
+
+button {
+  cursor: pointer;
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.button {
+  @include block-box-shadow();
+  background-color: $c--orange;
+  padding: 0.7em;
+
+  font-weight: $fw--bold;
+  font-size: $fz--lg;
+  color: $c--white;
+
+  &--fullwidth {
+    width: 100%;
+    display: block;
+  }
+}

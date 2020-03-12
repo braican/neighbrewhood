@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import { getDistanceBetween } from '@/utils';
 
 Vue.use(Vuex);
 
@@ -8,8 +9,10 @@ export default new Vuex.Store({
     currentUser: null,
     userProfile: {},
 
-    breweries: {},
+    breweries: [],
     breweriesLoaded: false,
+
+    nearbyBreweries: [],
   },
   mutations: {
     setBreweries(state, val) {
@@ -17,6 +20,9 @@ export default new Vuex.Store({
     },
     setBreweriesLoaded(state, val) {
       state.breweriesLoaded = val;
+    },
+    setNearbyBreweries(state, val) {
+      state.nearbyBreweries = val;
     },
   },
   actions: {
@@ -26,9 +32,13 @@ export default new Vuex.Store({
         commit('setBreweries', breweries);
         commit('setBreweriesLoaded', true);
       });
-
     },
-    addBrewery({ commit, state }) {
+    findNearbyBreweries({ commit, state }, [lat, lng]) {
+      const mappedBreweries = state.breweries
+        .map(brewery => ({ ...brewery, distance: getDistanceBetween(lat, lng, brewery.latLng[0], brewery.latLng[1]) }))
+        .filter(brewery => brewery.distance < 2);
+
+      commit('setNearbyBreweries', mappedBreweries);
 
     },
   },
