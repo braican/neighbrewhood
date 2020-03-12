@@ -66,7 +66,7 @@
           <option value="UT">Utah</option>
           <option value="VT">Vermont</option>
           <option value="VA">Virginia</option>
-          <option value="WA">Washington</option>
+          <option value="WA" selected>Washington</option>
           <option value="WV">West Virginia</option>
           <option value="WI">Wisconsin</option>
           <option value="WY">Wyoming</option>
@@ -75,7 +75,7 @@
 
       <label>
         Zip
-        <input v-model="zip" type="text">
+        <input v-model="zip" type="number">
       </label>
 
       <button>
@@ -86,22 +86,8 @@
 </template>
 
 <script>
-import { Loader as GoogleMapsLoader } from 'google-maps';
 import { mapState } from 'vuex';
-
-const getLatLng = ({ maps }, address) =>
-  new Promise((resolve, reject) => {
-    const geocoder = new maps.Geocoder();
-    geocoder.geocode({ address }, (results, status) => {
-      if (status !== 'OK' || !results[0]) {
-        reject(status);
-        throw new Error('Geocode was not successful.', status);
-      }
-
-      const latLng = results[0].geometry.location.toJSON();
-      resolve(latLng);
-    });
-  });
+import Request from '@/utils/request';
 
 export default {
   name: 'Admin',
@@ -111,33 +97,21 @@ export default {
       street: '',
       city: '',
       state: '',
-      zip: '',
-      google: null,
+      zip: null,
     };
   },
   computed: {
     ...mapState(['breweries']),
   },
-  async mounted() {
-    if (this.google !== null) {
-      return;
-    }
-
-    // const gmapsLoader = new GoogleMapsLoader(mapsApiKey);
-    // this.google = await gmapsLoader.load();
-  },
   methods: {
     submit(event) {
       event.preventDefault();
-      if (this.google === null) {
-        return;
-      }
 
       if (!this.street || !this.city || !this.state || !this.zip) {
         throw new Error('Please fill out all fields.');
       }
 
-      const address = `${this.street}, ${this.city}, ${this.state}, ${this.zip}`;
+      const address = [this.street, this.city, this.state, this.zip].join(', ');
       const breweryRecord = {
         name: this.brewery,
         state: this.state,
@@ -146,28 +120,32 @@ export default {
         address: address,
       };
 
-      getLatLng(this.google, address)
-        .then(({ lat, lng }) => {
-          breweryRecord.latLng = [lat, lng];
-          this.$store.dispatch('addBrewery', breweryRecord);
-        });
+      new Request().addBrewery(breweryRecord)
+        .then(() => {
+          console.log('Record added'); // eslint-disable-line
+          this.brewery = '';
+          this.street = '';
+        })
+        .catch(error => console.error('Error', error));
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+@import '@/styles/_abstracts.scss';
+
 form {
   width: 100%;
   max-width: 600px;
-  margin: 2rem auto;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  margin: $spacing auto;
+  padding-left: $spacing;
+  padding-right: $spacing;
 }
 
 label {
   display: block;
-  margin-bottom: 2rem;
+  margin-bottom: $spacing;
 }
 input,
 textarea {
