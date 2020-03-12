@@ -8,6 +8,19 @@ select {
   font-size: $fz--base;
 }
 
+input,
+textarea,
+select {
+  width: 100%;
+  display: block;
+  border: 1px solid $c--black;
+  padding: 0.5em;
+}
+
+label {
+  display: block;
+}
+
 .item-header {
   font-size: $fz--lg;
   font-weight: $fw--bold;

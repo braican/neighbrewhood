@@ -1,43 +1,58 @@
 <template>
-  <div v-if="nearbyBreweries.length > 0" class="brewery-list app-wrap">
-    <header class="list-header">
-      <h3 class="section-header">
-        {{ random === null ? 'Nearby' : 'Head to...' }}
-      </h3>
+  <section class="app-wrap">
+    <div v-if="nearbyBreweries.length > 0">
+      <header class="list-header">
+        <div class="header-left">
+          <h3 class="section-header">
+            {{ random === null ? 'Nearby' : 'Head to...' }}
+          </h3>
+        </div>
 
-      <div>
+        <div>
+          <button
+            type="button"
+            class="button"
+            @click="pickRandom"
+          >
+            Random
+          </button>
+        </div>
+      </header>
+
+      <div v-if="random">
+        <div class="random-brewery">
+          <BreweryCard :brewery="random" />
+        </div>
+
         <button
           type="button"
-          class="button"
-          @click="pickRandom"
+          class="back"
+          @click="backToAll"
         >
-          Random
+          &larr; Back to all nearby breweries
         </button>
       </div>
-    </header>
 
-    <div v-if="random">
-      <BreweryCard :brewery="random" />
-
-      <button
-        type="button"
-        class="back"
-        @click="backToAll"
-      >
-        Back to all nearby breweries
-      </button>
+      <div v-else>
+        <p class="count">
+          ({{ nearbyBreweries.length }} breweries)
+        </p>
+        <ul class="brewery-list">
+          <li
+            v-for="brewery in nearbyBreweries"
+            :key="brewery.id"
+            class="brewery"
+          >
+            <BreweryCard :brewery="brewery" />
+          </li>
+        </ul>
+      </div>
     </div>
 
-    <ul v-else>
-      <li
-        v-for="brewery in nearbyBreweries"
-        :key="brewery.id"
-        class="brewery"
-      >
-        <BreweryCard :brewery="brewery" />
-      </li>
-    </ul>
-  </div>
+    <div v-else>
+      <p>There are no nearby breweries</p>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -60,7 +75,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(['nearbyBreweries']),
+    ...mapState(['nearbyBreweries', 'located']),
   },
   methods: {
     pickRandom() {
@@ -76,28 +91,35 @@ export default {
 <style lang="scss">
 @import '@/styles/_abstracts.scss';
 
+.list-header {
+  display: flex;
+  align-items: center;
+  margin-top: $spacing * -3.1;
+}
+
+.header-left {
+  flex: 1;
+  margin-right: $spacing;
+}
+
 .brewery-list {
   margin-top: $spacing * 2;
 }
 
-.list-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: $spacing;
-}
-
-.section-header {
-  flex: 1;
-}
-
-.brewery + .brewery {
+.brewery {
+  padding-top: $spacing;
+  border-top: 1px solid $c--gray-e;
   margin-top: $spacing;
+}
+
+.random-brewery {
+  margin-top: $spacing * 2;
 }
 
 .back {
   margin-top: $spacing * 2;
-  background-color: $c--gray-f;
-  padding: .5em 1em;
+  background-color: $c--gray-e;
+  padding: .6em 1em;
 }
 
 </style>

@@ -10,7 +10,8 @@ export const getDistanceBetween = (lat1, lon1, lat2, lon2) => {
     Math.sin(dLon / 2) * Math.sin(dLon / 2)
     ;
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  const d = R * c; // Distance in miles
+  const CONSTANT = 1.1; // a constant to account for road travel
+  const d = R * c * CONSTANT; // Distance in miles
   return round(d);
 };
 
