@@ -18,6 +18,14 @@
 
     <div v-if="random">
       <BreweryCard :brewery="random" />
+
+      <button
+        type="button"
+        class="back"
+        @click="backToAll"
+      >
+        Back to all nearby breweries
+      </button>
     </div>
 
     <ul v-else>
@@ -29,14 +37,6 @@
         <BreweryCard :brewery="brewery" />
       </li>
     </ul>
-
-    <button
-      type="button"
-      class="back"
-      @click="backToAll"
-    >
-      Back to all nearby breweries
-    </button>
   </div>
 </template>
 
