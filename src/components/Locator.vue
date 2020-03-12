@@ -39,10 +39,12 @@ export default {
     onGeocodeSuccess({ coords: { latitude, longitude } }) {
       this.message = '';
       this.located = true;
+      this.$store.commit('setLocated', true);
       this.$store.dispatch('findNearbyBreweries', [latitude, longitude]);
     },
     onGeocodeError() {
-      this.message = 'Unable to get your location';
+      this.located = true;
+      this.message = 'Unable to get your location. Please contact support.';
     },
     locate() {
       if (!navigator.geolocation) {

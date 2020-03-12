@@ -78,7 +78,7 @@
         <input v-model="zip" type="number">
       </label>
 
-      <button>
+      <button type="submit" class="button">
         Submit
       </button>
     </form>
@@ -144,14 +144,7 @@ form {
 }
 
 label {
-  display: block;
   margin-bottom: $spacing;
 }
-input,
-textarea {
-  width: 100%;
-  display: block;
-  border: 1px solid #999;
-  padding: 4px;
-}
+
 </style>

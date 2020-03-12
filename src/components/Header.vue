@@ -20,14 +20,12 @@ export default {
 @import '@/styles/_abstracts.scss';
 
 .masthead {
-  background-color: $c--gray-f;
+  background-color: $c--white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: $c--gray-f;
   padding-top: $spacing;
-  padding-bottom: $spacing;
-  margin-bottom: $spacing * 2;
+  padding-bottom: $spacing * 2;
 }
 
 .logo {
