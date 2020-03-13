@@ -1,4 +1,8 @@
 .app-wrap {
   padding-left: $spacing;
   padding-right: $spacing;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 600px;
+  width: 100%;
 }
