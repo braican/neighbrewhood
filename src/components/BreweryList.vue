@@ -26,7 +26,7 @@
 
         <button
           type="button"
-          class="back"
+          class="button--secondary"
           @click="backToAll"
         >
           &larr; Back to all nearby breweries
@@ -116,10 +116,7 @@ export default {
   margin-top: $spacing * 2;
 }
 
-.back {
+.button--secondary {
   margin-top: $spacing * 2;
-  background-color: $c--gray-e;
-  padding: .6em 1em;
 }
-
 </style>

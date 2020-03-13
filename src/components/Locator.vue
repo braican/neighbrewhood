@@ -12,7 +12,7 @@
       Geolocation is not supported by your browser
     </p>
 
-    <p v-if="message">
+    <p v-if="message" class="message">
       {{ message }}
     </p>
   </div>
@@ -42,9 +42,18 @@ export default {
       this.$store.commit('setLocated', true);
       this.$store.dispatch('findNearbyBreweries', [latitude, longitude]);
     },
-    onGeocodeError() {
-      this.located = true;
-      this.message = 'Unable to get your location. Please contact support.';
+    onGeocodeError(error) {
+      this.button = 'Get my location';
+
+      if (error.code === 1) {
+        this.message = 'Please enable geolocation for this app on your device.';
+      } else if (error.code === 2) {
+        this.message = error.message;
+      } else if (error.code === 3) {
+        this.message = error.message;
+      } else {
+        this.message = 'Unable to get your location. Please contact support.';
+      }
     },
     locate() {
       if (!navigator.geolocation) {
@@ -58,6 +67,11 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+@import '@/styles/_abstracts.scss';
+
+.message {
+  margin-top: $spacing;
+}
 
 </style>
