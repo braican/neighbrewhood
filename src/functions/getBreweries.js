@@ -7,14 +7,24 @@ const client = new faunadb.Client({
 
 export async function handler() {
   try {
-    const response = await client.query(q.Paginate(q.Match(q.Index('allBreweries'))));
-    const refs = response.data;
-    const getAllQuery = refs.map(ref => q.Get(ref));
-    const allBreweries = await client.query(getAllQuery);
+    const breweries = [];
+    const helper = await client.paginate(q.Match(q.Index('all_breweries')));
+
+    await helper.each(page => {
+      const mapped = page.map(([_fid, id, name, street, city, state, lat, lng, website]) => {
+        const address = [street, city, state].join(', ');
+        const latLng = [lat, lng];
+        const record = { name, address, city, state, latLng, website };
+        return record;
+      });
+
+      breweries.push(...mapped);
+    });
+
 
     return {
       statusCode: 200,
-      body: JSON.stringify(allBreweries),
+      body: JSON.stringify(breweries),
     };
 
   } catch (error) {
