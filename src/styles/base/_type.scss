@@ -43,7 +43,6 @@ button {
   @include block-box-shadow();
   background-color: $c--orange;
   padding: 0.7em;
-
   font-weight: $fw--bold;
   font-size: $fz--lg;
   color: $c--white;
@@ -51,9 +50,6 @@ button {
   &--fullwidth {
     width: 100%;
     display: block;
-  }
-
-  &--secondary {
   }
 }
 
